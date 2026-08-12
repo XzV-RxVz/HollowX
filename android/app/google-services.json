@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1077232584055",
+    "project_id": "sxc-execx",
+    "storage_bucket": "sxc-execx.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1077232584055:android:9b36138b808ae116fccd72",
+        "android_client_info": {
+          "package_name": "com.Death.Trash"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAp8q9CVg3Wl4RSoFXAf9hXalwXWxfe3ZE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

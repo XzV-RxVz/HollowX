@@ -1,0 +1,93 @@
+name: xxo25
+description: "Flutter pler"
+publish_to: 'none'
+version: 2.0.0
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  provider: ^6.1.5
+  battery_plus: ^5.0.0
+  http: ^1.6.0
+  image_picker: ^1.2.2
+  shimmer: ^3.0.0
+  intl: ^0.20.2
+  url_launcher: ^6.3.2
+  cupertino_icons: ^1.0.9
+  shared_preferences: ^2.5.5
+  socket_io_client: ^2.0.3
+
+  device_info_plus: ^13.2.0
+  carousel_slider: ^5.1.1
+
+  firebase_core: ^4.0.0
+  firebase_messaging: ^16.0.0
+  flutter_local_notifications: ^22.0.1
+
+  web_socket_channel: ^3.0.3
+  network_info_plus: ^8.2.0
+  permission_handler: ^12.0.1
+  webview_flutter: ^4.13.0
+  
+  just_audio: ^0.9.36
+  audio_service: ^0.18.12
+  audioplayers: ^5.2.1
+  flutter_sound: ^9.2.13
+  video_player: ^2.10.0
+  chewie: ^1.13.0
+
+  font_awesome_flutter: ^11.0.0
+  path_provider: ^2.1.5
+  share_plus: ^13.2.0
+  flutter_screenutil: ^5.9.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
+  flutter_inappwebview: ^6.1.5
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: assets/icon/icon.jpg
+  image_path_android: assets/icon/icon.jpg
+  image_path_ios: assets/icon/icon.jpg
+  min_sdk_android: 21
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/logo.jpg
+    - assets/images/logo.png
+    - assets/images/reze.png
+    - assets/videos/splash.mp4
+    - assets/videos/banner.mp4
+    - assets/videos/loading.mp4
+    - assets/videos/opening.mp4
+    - assets/videos/BannerOne.mp4
+    - assets/videos/BannerTwo.mp4
+    - assets/videos/BannerThree.mp4
+
+  fonts:
+    - family: Orbitron
+      fonts:
+        - asset: fonts/Rajdhani-Regular.ttf
+
+    - family: ShareTechMono
+      fonts:
+        - asset: fonts/Rajdhani-Regular.ttf
+
+    - family: Rajdhani-Regular
+      fonts:
+        - asset: fonts/Rajdhani-Regular.ttf
+
+    - family: FontX
+      fonts:
+        - asset: fonts/FontX.ttf
