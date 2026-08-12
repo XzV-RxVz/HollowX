@@ -156,7 +156,7 @@ class _RatDashboardScreenState extends State<RatDashboardScreen>
                 border: Border.all(color: _kRed.withOpacity(0.3)),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: const Icon(FontAwesomeIcons.boltLightning, color: Colors.white, size: 16),
+              child: const FaIcon(FontAwesomeIcons.boltLightning, color: Colors.white, size: 16),
             ),
             const SizedBox(width: 12),
             const Text('Botnet Control',
@@ -562,7 +562,7 @@ class _RatDashboardScreenState extends State<RatDashboardScreen>
             onPressed: _showBotnetDialog,
             backgroundColor: Colors.transparent,
             elevation: 0,
-            icon: Icon(FontAwesomeIcons.boltLightning, color: theme.errorColor, size: 18),
+            icon: FaIcon(FontAwesomeIcons.boltLightning, color: theme.errorColor, size: 18),
             label: Text(
               'Botnet',
               style: TextStyle(

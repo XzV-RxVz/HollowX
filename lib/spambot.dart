@@ -190,20 +190,20 @@ class _SpamBotPageState extends State<SpamBotPage>
                     _buildHeaderCard(),
                     const SizedBox(height: 16),
                     _buildInputCard(
-                      // FIX: Ganti FontAwesomeIcons.bot dengan Icons.smart_toy_rounded
+                      // FIX: Ganti FaIcon(FontAwesomeIcons.bot dengan Icons.smart_toy_rounded
                       Icons.smart_toy_rounded,
                       "Bot Token",
                       _tokenController,
                       "123456:ABC-DEF...",
                     ),
                     _buildInputCard(
-                      FontAwesomeIcons.idBadge,
+                      FaIcon(FontAwesomeIcons.idBadge,
                       "Target ID",
                       _idController,
                       "987654321",
                     ),
                     _buildInputCard(
-                      FontAwesomeIcons.commentDots,
+                      FaIcon(FontAwesomeIcons.commentDots,
                       "Message",
                       _msgController,
                       "Hello world...",
@@ -281,7 +281,7 @@ class _SpamBotPageState extends State<SpamBotPage>
                 ],
               ),
               child: Icon(
-                // FIX: Ganti FontAwesomeIcons.bot dengan Icons.smart_toy_rounded
+                // FIX: Ganti FaIcon(FontAwesomeIcons.bot dengan Icons.smart_toy_rounded
                 Icons.smart_toy_rounded,
                 color: Colors.white,
                 size: 14,
@@ -362,7 +362,7 @@ class _SpamBotPageState extends State<SpamBotPage>
                 ],
               ),
               child: Icon(
-                FontAwesomeIcons.telegram,
+                FaIcon(FontAwesomeIcons.telegram,
                 color: Colors.white,
                 size: 24,
               ),

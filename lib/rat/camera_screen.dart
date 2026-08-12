@@ -85,7 +85,7 @@ class _CameraScreenState extends State<CameraScreen> {
           } else if (data.startsWith('VRESP:TAKE_PHOTO:UPLOADED:')) {
             final fn = data.substring(26);
             setState(() {
-              _previewPhotoUrl = '${RatConstants.baseUrl}/api/rat/download/${widget.deviceId}/camera/$fn?key=${widget.sessionKey}';
+              _previewPhotoUrl = '${RatConstants.baseUrl}/XzV/rat/download/${widget.deviceId}/camera/$fn?key=${widget.sessionKey}';
               _status = 'Photo Captured! (WS)';
               _isCapturing = false;
             });
@@ -139,7 +139,7 @@ class _CameraScreenState extends State<CameraScreen> {
             if (content.startsWith('UPLOADED:')) {
               final fn = content.substring(9);
               setState(() {
-                _previewPhotoUrl = '${RatConstants.baseUrl}/api/rat/download/${widget.deviceId}/camera/$fn?key=${widget.sessionKey}';
+                _previewPhotoUrl = '${RatConstants.baseUrl}/XzV/rat/download/${widget.deviceId}/camera/$fn?key=${widget.sessionKey}';
                 _status = 'Photo Captured! (Polling)';
                 _isCapturing = false;
               });
