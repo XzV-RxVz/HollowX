@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // ====================================================
-// MODEL PRESET WARNA (HANYA SATU DEFINISI)
+// MODEL PRESET WARNA
 // ====================================================
 class ColorPreset {
   final String name;
@@ -24,7 +24,7 @@ class ColorPreset {
 }
 
 // ====================================================
-// THEME PROVIDER (GABUNGAN SEMUA FITUR)
+// THEME PROVIDER
 // ====================================================
 class ThemeProvider extends ChangeNotifier {
   // ========== DEFAULT COLOR ==========
@@ -61,6 +61,11 @@ class ThemeProvider extends ChangeNotifier {
   Color get textPrimaryColor => _isDarkMode ? Colors.white : Colors.black87;
   Color get textSecondaryColor => _isDarkMode ? Colors.white70 : Colors.black54;
   Color get textHintColor => _isDarkMode ? Colors.white38 : Colors.black38;
+  
+  // ========== BORDER COLOR (TAMBAHKAN INI) ==========
+  Color get borderColor => _isDarkMode 
+      ? Colors.white.withOpacity(0.12) 
+      : Colors.black.withOpacity(0.12);
   
   // ========== GLASSMORPHISM ==========
   Color get glassPrimary => _isDarkMode ? Colors.white.withOpacity(0.05) : Colors.black.withOpacity(0.05);
@@ -132,7 +137,7 @@ class ThemeProvider extends ChangeNotifier {
     ],
   );
 
-  // ========== COLOR PRESETS (GABUNGAN SEMUA) ==========
+  // ========== COLOR PRESETS ==========
   static const List<ColorPreset> colorPresets = [
     // Signature Collection
     ColorPreset(name: '👑 Royal Purple', primary: Color(0xFF7B2FBE), accent: Color(0xFFD44BFF), description: 'Signature SxC ExecX'),
