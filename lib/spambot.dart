@@ -65,6 +65,11 @@ class _SpamBotPageState extends State<SpamBotPage>
   void dispose() {
     _mainController.dispose();
     _pulseController.dispose();
+    _tokenController.dispose();
+    _idController.dispose();
+    _msgController.dispose();
+    _delayController.dispose();
+    _countController.dispose();
     super.dispose();
   }
 
@@ -189,21 +194,21 @@ class _SpamBotPageState extends State<SpamBotPage>
                   children: [
                     _buildHeaderCard(),
                     const SizedBox(height: 16),
+                    // PERBAIKAN: Hapus FaIcon dan gunakan IconData langsung
                     _buildInputCard(
-                      // FIX: Ganti FaIcon(FontAwesomeIcons.bot dengan Icons.smart_toy_rounded
                       Icons.smart_toy_rounded,
                       "Bot Token",
                       _tokenController,
                       "123456:ABC-DEF...",
                     ),
                     _buildInputCard(
-                      FaIcon(FontAwesomeIcons.idBadge,
+                      Icons.badge_rounded,
                       "Target ID",
                       _idController,
                       "987654321",
                     ),
                     _buildInputCard(
-                      FaIcon(FontAwesomeIcons.commentDots,
+                      Icons.comment_rounded,
                       "Message",
                       _msgController,
                       "Hello world...",
@@ -281,7 +286,6 @@ class _SpamBotPageState extends State<SpamBotPage>
                 ],
               ),
               child: Icon(
-                // FIX: Ganti FaIcon(FontAwesomeIcons.bot dengan Icons.smart_toy_rounded
                 Icons.smart_toy_rounded,
                 color: Colors.white,
                 size: 14,
@@ -362,7 +366,7 @@ class _SpamBotPageState extends State<SpamBotPage>
                 ],
               ),
               child: Icon(
-                FaIcon(FontAwesomeIcons.telegram,
+                FontAwesomeIcons.telegram,
                 color: Colors.white,
                 size: 24,
               ),
@@ -405,10 +409,10 @@ class _SpamBotPageState extends State<SpamBotPage>
   }
 
   // ============================================================
-  // INPUT CARD
+  // INPUT CARD - PERBAIKAN
   // ============================================================
   Widget _buildInputCard(
-    dynamic icon,
+    IconData icon,
     String label,
     TextEditingController controller,
     String hint, {
@@ -434,9 +438,7 @@ class _SpamBotPageState extends State<SpamBotPage>
         children: [
           Row(
             children: [
-              icon is FaIconData
-                  ? FaIcon(icon, color: kDeathRed, size: 14)
-                  : Icon(icon as IconData, color: kDeathRed, size: 14),
+              Icon(icon, color: kDeathRed, size: 14),
               const SizedBox(width: 8),
               Text(
                 label,
@@ -450,6 +452,7 @@ class _SpamBotPageState extends State<SpamBotPage>
               ),
             ],
           ),
+          const SizedBox(height: 4),
           TextField(
             controller: controller,
             maxLines: maxLines,
@@ -467,6 +470,7 @@ class _SpamBotPageState extends State<SpamBotPage>
               ),
               border: InputBorder.none,
               contentPadding: const EdgeInsets.symmetric(vertical: 4),
+              isDense: true,
             ),
           ),
         ],
@@ -547,7 +551,9 @@ class _SpamBotPageState extends State<SpamBotPage>
             width: 0.5,
           ),
         ),
-        onPressed: _isSpamming ? () => setState(() => _isSpamming = false) : _startSpam,
+        onPressed: _isSpamming 
+          ? () => setState(() => _isSpamming = false) 
+          : _startSpam,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

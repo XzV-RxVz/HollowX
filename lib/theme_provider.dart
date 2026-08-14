@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -400,4 +401,317 @@ class ThemeProvider extends ChangeNotifier {
   String get currentPresetName => colorPresets[_currentPresetIndex].name;
   int get currentPresetIndex => _currentPresetIndex;
   int get totalPresets => colorPresets.length;
+}
+
+// ====================================================
+// MODEL PRESET WARNA
+// ====================================================
+class ColorPreset {
+  final String name;
+  final Color primary;
+  final Color accent;
+
+  const ColorPreset({
+    required this.name,
+    required this.primary,
+    required this.accent,
+  });
+}
+
+// ====================================================
+// THEME PROVIDER DENGAN SEMUA FITUR
+// ====================================================
+class ThemeProvider extends ChangeNotifier {
+  // Default colors
+  static const Color _defaultPrimary = Color(0xFF9D00FF);
+  static const Color _defaultAccent = Color(0xFFCC66FF);
+  static const Color _defaultSecondary = Color(0xFF7C4DFF);
+  
+  // State
+  Color _primaryColor = _defaultPrimary;
+  Color _accentColor = _defaultAccent;
+  Color _secondaryColor = _defaultSecondary;
+  bool _isDarkMode = true;
+  int _currentPresetIndex = 41;
+  bool _customGradientEnabled = true;
+  double _glowIntensity = 0.5;
+
+  // ========== COLOR PRESETS (30+ presets) ==========
+  static const List<ColorPreset> colorPresets = [
+    // Standard Presets
+    ColorPreset(name: 'Pure White', primary: Color(0xFFFFFFFF), accent: Color(0xFFCFD8DC)),
+    ColorPreset(name: 'Silver', primary: Color(0xFFECEFF1), accent: Color(0xFFB0BEC5)),
+    ColorPreset(name: 'Gray', primary: Color(0xFF9E9E9E), accent: Color(0xFF616161)),
+    ColorPreset(name: 'Black', primary: Color(0xFF607D8B), accent: Color(0xFF263238)),
+    ColorPreset(name: 'Red', primary: Color(0xFFF44336), accent: Color(0xFFB71C1C)),
+    ColorPreset(name: 'Pink', primary: Color(0xFFE91E63), accent: Color(0xFF880E4F)),
+    ColorPreset(name: 'Purple', primary: Color(0xFF9C27B0), accent: Color(0xFF4A148C)),
+    ColorPreset(name: 'Indigo', primary: Color(0xFF3F51B5), accent: Color(0xFF1A237E)),
+    ColorPreset(name: 'Blue', primary: Color(0xFF2196F3), accent: Color(0xFF0D47A1)),
+    ColorPreset(name: 'Cyan', primary: Color(0xFF00BCD4), accent: Color(0xFF006064)),
+    ColorPreset(name: 'Teal', primary: Color(0xFF009688), accent: Color(0xFF004D40)),
+    ColorPreset(name: 'Green', primary: Color(0xFF4CAF50), accent: Color(0xFF1B5E20)),
+    ColorPreset(name: 'Lime', primary: Color(0xFFCDDC39), accent: Color(0xFF827717)),
+    ColorPreset(name: 'Yellow', primary: Color(0xFFFFEB3B), accent: Color(0xFFF57F17)),
+    ColorPreset(name: 'Orange', primary: Color(0xFFFF9800), accent: Color(0xFFE65100)),
+    ColorPreset(name: 'Brown', primary: Color(0xFF795548), accent: Color(0xFF3E2723)),
+    ColorPreset(name: 'Gold', primary: Color(0xFFFFD700), accent: Color(0xFF8B6914)),
+    
+    // Cyberpunk Presets - UNGU NEON UTAMA
+    ColorPreset(name: 'Neon Ice', primary: Color(0xFF00E5FF), accent: Color(0xFF18FFFF)),
+    ColorPreset(name: 'Matrix', primary: Color(0xFF00FF41), accent: Color(0xFF008F11)),
+    ColorPreset(name: 'Cyber Purple', primary: Color(0xFF9C27B0), accent: Color(0xFFE040FB)),
+    ColorPreset(name: 'Blood Neon', primary: Color(0xFFFF1744), accent: Color(0xFFFF5252)),
+    ColorPreset(name: 'Sunset Flame', primary: Color(0xFFFF6D00), accent: Color(0xFFFFAB40)),
+    ColorPreset(name: 'Golden Lux', primary: Color(0xFFFFD700), accent: Color(0xFFFFB300)),
+    ColorPreset(name: 'Pink Plasma', primary: Color(0xFFFF4081), accent: Color(0xFFF50057)),
+    ColorPreset(name: 'Blue Aurora', primary: Color(0xFF2979FF), accent: Color(0xFF00B0FF)),
+    ColorPreset(name: 'Electric Lime', primary: Color(0xFF76FF03), accent: Color(0xFFC6FF00)),
+    ColorPreset(name: 'Neon Emerald', primary: Color(0xFF00E676), accent: Color(0xFF69F0AE)),
+    ColorPreset(name: 'Toxic Acid', primary: Color(0xFFB2FF59), accent: Color(0xFFEEFF41)),
+    ColorPreset(name: 'Cyber Rose', primary: Color(0xFFFF80AB), accent: Color(0xFFF50057)),
+    ColorPreset(name: 'Violet Storm', primary: Color(0xFF7C4DFF), accent: Color(0xFFB388FF)),
+    ColorPreset(name: 'Neon Lavender', primary: Color(0xFFB388FF), accent: Color(0xFFEA80FC)),
+    ColorPreset(name: 'Electric Magenta', primary: Color(0xFFFF00FF), accent: Color(0xFFFF5CFF)),
+    ColorPreset(name: 'Frozen Blue', primary: Color(0xFF00B8FF), accent: Color(0xFF82B1FF)),
+    ColorPreset(name: 'Galaxy', primary: Color(0xFF512DA8), accent: Color(0xFF7C4DFF)),
+    ColorPreset(name: 'Ocean Pulse', primary: Color(0xFF00ACC1), accent: Color(0xFF18FFFF)),
+    ColorPreset(name: 'Firestorm', primary: Color(0xFFFF3D00), accent: Color(0xFFFF6E40)),
+    ColorPreset(name: 'Ruby Neon', primary: Color(0xFFD50000), accent: Color(0xFFFF1744)),
+    ColorPreset(name: 'Dark Void', primary: Color(0xFF455A64), accent: Color(0xFF263238)),
+    ColorPreset(name: 'Midnight Cyber', primary: Color(0xFF0F172A), accent: Color(0xFF334155)),
+    ColorPreset(name: 'Holographic', primary: Color(0xFF00E5FF), accent: Color(0xFFFF00FF)),
+    ColorPreset(name: 'RGB Fusion', primary: Color(0xFF00E676), accent: Color(0xFFFF1744)),
+    ColorPreset(name: 'Synthwave', primary: Color(0xFFFF0080), accent: Color(0xFF7928CA)),
+    ColorPreset(name: 'RetroWave', primary: Color(0xFFFF6EC7), accent: Color(0xFF7A5FFF)),
+    ColorPreset(name: 'HyperBlue', primary: Color(0xFF00C6FF), accent: Color(0xFF0072FF)),
+    ColorPreset(name: 'Dragon Fire', primary: Color(0xFFFF512F), accent: Color(0xFFDD2476)),
+    ColorPreset(name: 'Aurora Borealis', primary: Color(0xFF00F260), accent: Color(0xFF0575E6)),
+    ColorPreset(name: 'Cyber Gold', primary: Color(0xFFF7971E), accent: Color(0xFFFFD200)),
+  ];
+
+  // ========== CONSTRUCTOR ==========
+  ThemeProvider() {
+    _loadSavedTheme();
+  }
+
+  // ========== GETTERS ==========
+  Color get primaryColor => _primaryColor;
+  Color get accentColor => _accentColor;
+  Color get secondaryColor => _secondaryColor;
+  bool get isDarkMode => _isDarkMode;
+  bool get customGradientEnabled => _customGradientEnabled;
+  double get glowIntensity => _glowIntensity;
+
+  // ========== ADDED: primaryColorLight untuk konsistensi ==========
+  Color get primaryColorLight => _accentColor;
+  Color get primaryColorDark => _primaryColor;
+
+  // ========== ADDED: textDim untuk bug_sender ==========
+  Color get textDim => _isDarkMode ? Colors.white.withOpacity(0.25) : Colors.black.withOpacity(0.25);
+
+  // ========== DYNAMIC UI COLORS ==========
+  Color get backgroundColor => _isDarkMode ? const Color(0xFF0A0F1A) : const Color(0xFFF5F5F5);
+  Color get surfaceColor => _isDarkMode ? const Color(0xFF0D1117) : const Color(0xFFFFFFFF);
+  Color get cardColor => _isDarkMode ? const Color(0xFF111C30) : const Color(0xFFFAFAFA);
+  Color get textPrimaryColor => _isDarkMode ? Colors.white : Colors.black87;
+  Color get textSecondaryColor => _isDarkMode ? Colors.white70 : Colors.black54;
+  Color get textHintColor => _isDarkMode ? Colors.white38 : Colors.black38;
+  
+  // Glassmorphism colors
+  Color get glassPrimary => _isDarkMode 
+      ? Colors.white.withOpacity(0.05) 
+      : Colors.black.withOpacity(0.05);
+  Color get glassSecondary => _isDarkMode 
+      ? Colors.white.withOpacity(0.08) 
+      : Colors.black.withOpacity(0.08);
+  Color get glassBorder => _isDarkMode 
+      ? Colors.white.withOpacity(0.08) 
+      : Colors.black.withOpacity(0.08);
+  
+  // Glow colors
+  Color get primaryGlow => primaryColor.withOpacity(0.3 * _glowIntensity);
+  Color get accentGlow => accentColor.withOpacity(0.3 * _glowIntensity);
+  Color get strongGlow => primaryColor.withOpacity(0.6 * _glowIntensity);
+  
+  // Status colors
+  Color get successColor => const Color(0xFF00E676);
+  Color get errorColor => const Color(0xFFFF2D55);
+  Color get warningColor => const Color(0xFFFF9F0A);
+  Color get infoColor => const Color(0xFF0A84FF);
+
+  // Gradient backgrounds
+  LinearGradient get primaryGradient => LinearGradient(
+    colors: [primaryColor, accentColor],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+  
+  LinearGradient get backgroundGradient => LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: _isDarkMode
+        ? [
+            primaryColor.withOpacity(0.14),
+            const Color(0xFF090C12),
+            const Color(0xFF050608),
+          ]
+        : [
+            primaryColor.withOpacity(0.08),
+            const Color(0xFFF0F0F0),
+            const Color(0xFFE0E0E0),
+          ],
+    stops: const [0.0, 0.5, 1.0],
+  );
+  
+  LinearGradient get cardGradient => LinearGradient(
+    colors: [glassPrimary, glassSecondary],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+  
+  LinearGradient get buttonGradient => LinearGradient(
+    colors: [primaryColor, accentColor],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+
+  // Box decorations dengan glassmorphism + neon glow
+  BoxDecoration get glassCardDecoration => BoxDecoration(
+    gradient: cardGradient,
+    borderRadius: BorderRadius.circular(24),
+    border: Border.all(color: primaryColor.withOpacity(0.15), width: 1),
+    boxShadow: [
+      BoxShadow(
+        color: primaryGlow,
+        blurRadius: 16,
+        spreadRadius: 1,
+      ),
+    ],
+  );
+  
+  BoxDecoration get neonBorderDecoration => BoxDecoration(
+    borderRadius: BorderRadius.circular(24),
+    border: Border.all(color: primaryColor.withOpacity(0.4), width: 1.5),
+    boxShadow: [
+      BoxShadow(
+        color: strongGlow,
+        blurRadius: 12,
+        spreadRadius: 0,
+      ),
+    ],
+  );
+
+  // ========== SAVE/LOAD THEME ==========
+  Future<void> _loadSavedTheme() async {
+    final prefs = await SharedPreferences.getInstance();
+    _currentPresetIndex = prefs.getInt('theme_preset_index') ?? 41;
+    _isDarkMode = prefs.getBool('theme_dark_mode') ?? true;
+    _customGradientEnabled = prefs.getBool('theme_custom_gradient') ?? true;
+    _glowIntensity = prefs.getDouble('theme_glow_intensity') ?? 0.5;
+    _applyPresetByIndex(_currentPresetIndex);
+    notifyListeners();
+  }
+
+  Future<void> _saveTheme() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('theme_preset_index', _currentPresetIndex);
+    await prefs.setBool('theme_dark_mode', _isDarkMode);
+    await prefs.setBool('theme_custom_gradient', _customGradientEnabled);
+    await prefs.setDouble('theme_glow_intensity', _glowIntensity);
+  }
+
+  // ========== APPLY PRESET ==========
+  void applyPreset(ColorPreset preset) {
+    final index = colorPresets.indexWhere((p) => p.name == preset.name);
+    if (index != -1) {
+      _applyPresetByIndex(index);
+      _saveTheme();
+      notifyListeners();
+    }
+  }
+
+  void _applyPresetByIndex(int index) {
+    if (index >= 0 && index < colorPresets.length) {
+      _currentPresetIndex = index;
+      _primaryColor = colorPresets[index].primary;
+      _accentColor = colorPresets[index].accent;
+      _secondaryColor = Color.lerp(_primaryColor, _accentColor, 0.5)!;
+    }
+  }
+
+  bool isActivePreset(ColorPreset preset) {
+    return _primaryColor == preset.primary && _accentColor == preset.accent;
+  }
+
+  // ========== THEME ACTIONS ==========
+  void resetToDefault() {
+    _currentPresetIndex = 0;
+    _primaryColor = _defaultPrimary;
+    _accentColor = _defaultAccent;
+    _secondaryColor = _defaultSecondary;
+    _saveTheme();
+    notifyListeners();
+  }
+
+  void toggleDarkMode() {
+    _isDarkMode = !_isDarkMode;
+    _saveTheme();
+    notifyListeners();
+  }
+
+  void setDarkMode(bool value) {
+    _isDarkMode = value;
+    _saveTheme();
+    notifyListeners();
+  }
+
+  void toggleCustomGradient() {
+    _customGradientEnabled = !_customGradientEnabled;
+    _saveTheme();
+    notifyListeners();
+  }
+
+  void setGlowIntensity(double value) {
+    _glowIntensity = value;
+    _saveTheme();
+    notifyListeners();
+  }
+
+  // ========== HELPER METHODS ==========
+  TextStyle getHeadingStyle({double fontSize = 20, FontWeight fontWeight = FontWeight.bold, Color? color}) {
+    return TextStyle(
+      color: color ?? textPrimaryColor,
+      fontSize: fontSize,
+      fontWeight: fontWeight,
+      fontFamily: 'Rajdhani',
+      letterSpacing: 1,
+    );
+  }
+
+  TextStyle getBodyStyle({double fontSize = 14, FontWeight fontWeight = FontWeight.normal, Color? color}) {
+    return TextStyle(
+      color: color ?? textSecondaryColor,
+      fontSize: fontSize,
+      fontWeight: fontWeight,
+      fontFamily: 'Rajdhani',
+    );
+  }
+
+  TextStyle getNeonTextStyle({double fontSize = 16, FontWeight fontWeight = FontWeight.bold}) {
+    return TextStyle(
+      color: primaryColor,
+      fontSize: fontSize,
+      fontWeight: fontWeight,
+      fontFamily: 'Rajdhani',
+      letterSpacing: 2,
+      shadows: [
+        Shadow(
+          color: primaryGlow,
+          blurRadius: 8,
+          offset: const Offset(0, 0),
+        ),
+      ],
+    );
+  }
 }
