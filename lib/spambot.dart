@@ -194,7 +194,6 @@ class _SpamBotPageState extends State<SpamBotPage>
                   children: [
                     _buildHeaderCard(),
                     const SizedBox(height: 16),
-                    // PERBAIKAN: Hapus FaIcon dan gunakan IconData langsung
                     _buildInputCard(
                       Icons.smart_toy_rounded,
                       "Bot Token",
@@ -333,7 +332,7 @@ class _SpamBotPageState extends State<SpamBotPage>
   }
 
   // ============================================================
-  // HEADER CARD
+  // HEADER CARD - PERBAIKAN: Ganti Icon menjadi FaIcon
   // ============================================================
   Widget _buildHeaderCard() {
     return Container(
@@ -365,7 +364,8 @@ class _SpamBotPageState extends State<SpamBotPage>
                   ),
                 ],
               ),
-              child: Icon(
+              // PERBAIKAN: Gunakan FaIcon dari font_awesome_flutter
+              child: FaIcon(
                 FontAwesomeIcons.telegram,
                 color: Colors.white,
                 size: 24,
@@ -409,7 +409,7 @@ class _SpamBotPageState extends State<SpamBotPage>
   }
 
   // ============================================================
-  // INPUT CARD - PERBAIKAN
+  // INPUT CARD
   // ============================================================
   Widget _buildInputCard(
     IconData icon,

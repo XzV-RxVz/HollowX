@@ -33,7 +33,6 @@ import 'toko_page.dart';
 import 'weather_page.dart';
 import 'jadwal_sholat_page.dart';
 import 'theme_provider.dart';
-import 'device_dashboard.dart';
 import 'game.dart';
 import 'notifications_control.dart';
 import 'tools_page.dart';

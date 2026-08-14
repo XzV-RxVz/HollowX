@@ -87,6 +87,10 @@ flutter:
     - family: Rajdhani-Regular
       fonts:
         - asset: fonts/Rajdhani-Regular.ttf
+      
+    - family: Rajdhani
+      fonts:
+        - asset: fonts/Rajdhani-Regular.ttf
 
     - family: FontX
       fonts:

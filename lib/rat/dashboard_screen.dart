@@ -156,6 +156,7 @@ class _RatDashboardScreenState extends State<RatDashboardScreen>
                 border: Border.all(color: _kRed.withOpacity(0.3)),
                 borderRadius: BorderRadius.circular(10),
               ),
+              // PERBAIKAN: Gunakan FaIcon
               child: const FaIcon(FontAwesomeIcons.boltLightning, color: Colors.white, size: 16),
             ),
             const SizedBox(width: 12),
@@ -304,7 +305,8 @@ class _RatDashboardScreenState extends State<RatDashboardScreen>
                 BoxShadow(color: theme.primaryColor.withOpacity(0.2), blurRadius: 10)
               ],
             ),
-            child: Icon(
+            // PERBAIKAN: Gunakan FaIcon
+            child: FaIcon(
               FontAwesomeIcons.biohazard,
               color: theme.primaryColor,
               size: 20,
@@ -481,7 +483,8 @@ class _RatDashboardScreenState extends State<RatDashboardScreen>
               borderRadius: BorderRadius.circular(20),
               border: Border.all(color: theme.glassBorder),
             ),
-            child: Icon(
+            // PERBAIKAN: Gunakan FaIcon
+            child: FaIcon(
               FontAwesomeIcons.satelliteDish,
               size: 56,
               color: theme.textHintColor,
@@ -546,6 +549,7 @@ class _RatDashboardScreenState extends State<RatDashboardScreen>
     );
   }
 
+  // ── Botnet FAB ────────────────────────────────────────────────────────────
   Widget _buildBotnetFab() {
     return Consumer<ThemeProvider>(
       builder: (context, theme, child) {
@@ -562,6 +566,7 @@ class _RatDashboardScreenState extends State<RatDashboardScreen>
             onPressed: _showBotnetDialog,
             backgroundColor: Colors.transparent,
             elevation: 0,
+            // PERBAIKAN: Gunakan FaIcon
             icon: FaIcon(FontAwesomeIcons.boltLightning, color: theme.errorColor, size: 18),
             label: Text(
               'Botnet',
