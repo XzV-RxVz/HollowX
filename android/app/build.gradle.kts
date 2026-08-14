@@ -29,12 +29,22 @@ android {
         versionCode = flutter.versionCode
         versionName = flutter.versionName
 
+        // ===== TAMBAHKAN INI =====
+        multiDexEnabled = true
+
         ndk {
             abiFilters += listOf(
                 "armeabi-v7a",
                 "arm64-v8a"
             )
         }
+    }
+
+    // ===== TAMBAHKAN BLOK INI =====
+    dexOptions {
+        javaMaxHeapSize = "4g"
+        preDexLibraries = false
+        maxProcessCount = 4
     }
 
     buildTypes {
@@ -53,6 +63,9 @@ flutter {
 dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.15.0"))
     implementation("com.google.firebase:firebase-messaging")
+
+    // ===== TAMBAHKAN INI =====
+    implementation("androidx.multidex:multidex:2.0.1")
 
     coreLibraryDesugaring(
         "com.android.tools:desugar_jdk_libs:2.1.5"
