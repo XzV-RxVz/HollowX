@@ -99,7 +99,7 @@ class _UcapanPageState extends State<UcapanPage>
 
     try {
       final response = await http.get(
-        Uri.parse('http://lalalucuu.alannxd.my.id:3006/getUcapan?key=$_sessionKey'),
+        Uri.parse('http://lalalucuu.alannxd.my.id:3012/getUcapan?key=$_sessionKey'),
       );
 
       if (response.statusCode == 200) {
@@ -137,7 +137,7 @@ class _UcapanPageState extends State<UcapanPage>
 
     try {
       final response = await http.post(
-        Uri.parse('http://lalalucuu.alannxd.my.id:3006/addUcapan'),
+        Uri.parse('http://lalalucuu.alannxd.my.id:3012/addUcapan'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'key': _sessionKey,
@@ -170,7 +170,7 @@ class _UcapanPageState extends State<UcapanPage>
 
     try {
       final response = await http.post(
-        Uri.parse('http://lalalucuu.alannxd.my.id:3006/likeUcapan'),
+        Uri.parse('http://lalalucuu.alannxd.my.id:3012/likeUcapan'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'key': _sessionKey,
@@ -296,7 +296,7 @@ class _UcapanPageState extends State<UcapanPage>
 
     try {
       final response = await http.delete(
-        Uri.parse('http://lalalucuu.alannxd.my.id:3006/deleteUcapan'),
+        Uri.parse('http://lalalucuu.alannxd.my.id:3012/deleteUcapan'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'key': _sessionKey,

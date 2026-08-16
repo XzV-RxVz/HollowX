@@ -6,11 +6,11 @@
 // UBAH URL DI SINI untuk mengganti endpoint API secara global.
 //
 // ============================================================================
-const String kBaseUrl = "http://lalalucuu.alannxd.my.id:3006";
+const String kBaseUrl = "http://lalalucuu.alannxd.my.id:3012";
 
 class ApiConfig {
   // Base URL untuk API (GANTI DI SINI)
-  static const String baseUrl = "http://lalalucuu.alannxd.my.id:3006";
+  static const String baseUrl = "http://lalalucuu.alannxd.my.id:3012";
 
   // Timeout untuk request (dalam detik)
   static const int connectionTimeout = 30;
@@ -39,7 +39,7 @@ class ApiConfig {
   static const String getInfoEndpoint = "$baseUrl/getInfo";
 
   // WebSocket URL
-  static const String wsUrl = "http://lalalucuu.alannxd.my.id:3006";
+  static const String wsUrl = "http://lalalucuu.alannxd.my.id:3012";
 
   // Chat Global Endpoints
   static const String getChatMessagesEndpoint = "$baseUrl/getChatMessages";

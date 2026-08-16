@@ -107,7 +107,7 @@ class _LoginPageState extends State<LoginPage>
 
     if (savedUser != null && savedPass != null && savedKey != null) {
       final uri = Uri.parse(
-          "http://lalalucuu.alannxd.my.id:3006/myInfo?username=$savedUser&password=$savedPass&androidId=$androidId&key=$savedKey");
+          "http://lalalucuu.alannxd.my.id:3012/myInfo?username=$savedUser&password=$savedPass&androidId=$androidId&key=$savedKey");
       try {
         final res = await http.get(uri);
         final data = jsonDecode(res.body);
@@ -152,7 +152,7 @@ class _LoginPageState extends State<LoginPage>
 
     try {
       final validate = await http.post(
-        Uri.parse("http://lalalucuu.alannxd.my.id:3006/validate"),
+        Uri.parse("http://lalalucuu.alannxd.my.id:3012/validate"),
         body: {
           "username": username,
           "password": password,

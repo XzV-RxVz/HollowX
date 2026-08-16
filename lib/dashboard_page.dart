@@ -334,7 +334,7 @@ class _DashboardPageState extends State<DashboardPage>
     setState(() => _isSendersLoading = true);
     try {
       final res = await http.get(
-        Uri.parse("http://lalalucuu.alannxd.my.id:3006/mySender?key=$sessionKey"),
+        Uri.parse("http://lalalucuu.alannxd.my.id:3012/mySender?key=$sessionKey"),
       ).timeout(const Duration(seconds: 5));
       final data = jsonDecode(res.body);
       if (data["valid"] == true && mounted) {
@@ -353,7 +353,7 @@ class _DashboardPageState extends State<DashboardPage>
   Future<void> _fetchOnlineUsers() async {
     try {
       final response = await http.get(
-        Uri.parse('http://lalalucuu.alannxd.my.id:3006/getOnlineUsers?key=$sessionKey'),
+        Uri.parse('http://lalalucuu.alannxd.my.id:3012/getOnlineUsers?key=$sessionKey'),
       ).timeout(const Duration(seconds: 5));
       if (response.statusCode == 200 && mounted) {
         final data = jsonDecode(response.body);
@@ -391,7 +391,7 @@ class _DashboardPageState extends State<DashboardPage>
 
   void _connectToWebSocket() {
     try {
-      _channel = WebSocketChannel.connect(Uri.parse('http://lalalucuu.alannxd.my.id:3006'));
+      _channel = WebSocketChannel.connect(Uri.parse('http://lalalucuu.alannxd.my.id:3012'));
       _channel?.sink.add(jsonEncode({
         "type": "validate",
         "key": sessionKey,

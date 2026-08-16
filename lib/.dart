@@ -1,1 +1,1 @@
-const String apiBaseUrl = "http://lalalucuu.alannxd.my.id:3006";
+const String apiBaseUrl = "http://lalalucuu.alannxd.my.id:3012";

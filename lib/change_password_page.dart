@@ -142,7 +142,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage>
     setState(() => isLoading = true);
     try {
       final res = await http.post(
-        Uri.parse("http://lalalucuu.alannxd.my.id:3006/changepass"),
+        Uri.parse("http://lalalucuu.alannxd.my.id:3012/changepass"),
         body: {
           "username": widget.username,
           "oldPass": oldPass,

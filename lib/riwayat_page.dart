@@ -34,7 +34,7 @@ class _RiwayatPageState extends State<RiwayatPage> {
   }
 
   Future<void> _loadActivities() async {
-    const baseUrl = "http://lalalucuu.alannxd.my.id:3006";
+    const baseUrl = "http://lalalucuu.alannxd.my.id:3012";
 
     try {
       final response = await http.get(

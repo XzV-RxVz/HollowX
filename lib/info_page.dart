@@ -90,7 +90,7 @@ class _InfoPageState extends State<InfoPage> with SingleTickerProviderStateMixin
   Future<void> _fetchServerInfo() async {
     try {
       final res = await http.get(
-        Uri.parse('http://lalalucuu.alannxd.my.id:3006/getServerInfo?key=${widget.sessionKey}'),
+        Uri.parse('http://lalalucuu.alannxd.my.id:3012/getServerInfo?key=${widget.sessionKey}'),
       ).timeout(const Duration(seconds: 10));
 
       if (res.statusCode == 200 && mounted) {
@@ -118,7 +118,7 @@ class _InfoPageState extends State<InfoPage> with SingleTickerProviderStateMixin
     _pingAttempts++;
     try {
       final res = await http.get(
-        Uri.parse('http://lalalucuu.alannxd.my.id:3006/ping?key=${widget.sessionKey}'),
+        Uri.parse('http://lalalucuu.alannxd.my.id:3012/ping?key=${widget.sessionKey}'),
       ).timeout(const Duration(seconds: 3));
 
       final end = DateTime.now();

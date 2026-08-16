@@ -15,7 +15,7 @@ import 'constants.dart';
 
 // ── Endpoint API ────────────────────────────────────────────────────────────
 const String _kGroupListPath = "/api/whatsapp/groupList";
-const String baseUrl = "http://lalalucuu.alannxd.my.id:3006";
+const String baseUrl = "http://lalalucuu.alannxd.my.id:3012";
 
 class GroupBugPage extends StatefulWidget {
   final String username;

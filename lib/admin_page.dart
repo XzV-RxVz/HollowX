@@ -80,7 +80,7 @@ class _AdminPageState extends State<AdminPage> with TickerProviderStateMixin {
     setState(() => isLoading = true);
     try {
       final res = await http.get(
-        Uri.parse('http://lalalucuu.alannxd.my.id:3006/listUsers?key=$sessionKey'),
+        Uri.parse('http://lalalucuu.alannxd.my.id:3012/listUsers?key=$sessionKey'),
       );
       final data = jsonDecode(res.body);
       if (data['valid'] == true && data['authorized'] == true) {
@@ -124,7 +124,7 @@ class _AdminPageState extends State<AdminPage> with TickerProviderStateMixin {
     setState(() => isLoading = true);
     try {
       final res = await http.get(Uri.parse(
-        'http://lalalucuu.alannxd.my.id:3006/deleteUser?key=$sessionKey&username=$username',
+        'http://lalalucuu.alannxd.my.id:3012/deleteUser?key=$sessionKey&username=$username',
       ));
       final data = jsonDecode(res.body);
       if (data['deleted'] == true) {
@@ -151,7 +151,7 @@ class _AdminPageState extends State<AdminPage> with TickerProviderStateMixin {
     setState(() => isLoading = true);
     try {
       final res = await http.get(Uri.parse(
-        'http://lalalucuu.alannxd.my.id:3006/userAdd?key=$sessionKey&username=$username&password=$password&day=$day&role=$newUserRole',
+        'http://lalalucuu.alannxd.my.id:3012/userAdd?key=$sessionKey&username=$username&password=$password&day=$day&role=$newUserRole',
       ));
       final data = jsonDecode(res.body);
       if (data['created'] == true) {

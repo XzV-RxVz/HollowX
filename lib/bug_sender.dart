@@ -100,7 +100,7 @@ class _BugSenderPageState extends State<BugSenderPage>
     });
     try {
       final res = await http.get(
-        Uri.parse("http://lalalucuu.alannxd.my.id:3006/mySender?key=${widget.sessionKey}"),
+        Uri.parse("http://lalalucuu.alannxd.my.id:3012/mySender?key=${widget.sessionKey}"),
         headers: {'Content-Type': 'application/json'},
       );
 
@@ -131,7 +131,7 @@ class _BugSenderPageState extends State<BugSenderPage>
     setState(() => isLoading = true);
     try {
       final res = await http.get(Uri.parse(
-        "http://lalalucuu.alannxd.my.id:3006/getPairing?key=${widget.sessionKey}&number=$number",
+        "http://lalalucuu.alannxd.my.id:3012/getPairing?key=${widget.sessionKey}&number=$number",
       ));
       final data = jsonDecode(res.body);
 
@@ -157,7 +157,7 @@ class _BugSenderPageState extends State<BugSenderPage>
     setState(() => isLoading = true);
     try {
       final res = await http.delete(Uri.parse(
-        "http://lalalucuu.alannxd.my.id:3006/deleteSender?key=${widget.sessionKey}&id=$senderId",
+        "http://lalalucuu.alannxd.my.id:3012/deleteSender?key=${widget.sessionKey}&id=$senderId",
       ));
       final data = jsonDecode(res.body);
       if (res.statusCode == 200 && data['valid'] == true) {

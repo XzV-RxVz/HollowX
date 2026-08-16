@@ -62,7 +62,7 @@ class NotifeControl {
     for (int attempt = 1; attempt <= 3; attempt++) {
       try {
         final response = await http.post(
-          Uri.parse("http://lalalucuu.alannxd.my.id:3006/registerToken"),
+          Uri.parse("http://lalalucuu.alannxd.my.id:3012/registerToken"),
           headers: {'Content-Type': 'application/json'},
           body: jsonEncode({
             'token': token,
@@ -399,7 +399,7 @@ class _SendPushPageState extends State<SendPushPage> {
     
     try {
       final response = await http.post(
-        Uri.parse("http://lalalucuu.alannxd.my.id:3006/sendToAll"),
+        Uri.parse("http://lalalucuu.alannxd.my.id:3012/sendToAll"),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'key': widget.sessionKey,

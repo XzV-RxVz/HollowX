@@ -89,7 +89,7 @@ class _SellerPageState extends State<SellerPage> with SingleTickerProviderStateM
     setState(() => isLoading = true);
     try {
       final res = await http.get(
-        Uri.parse('http://lalalucuu.alannxd.my.id:3006/listUsers?key=${widget.keyToken}'),
+        Uri.parse('http://lalalucuu.alannxd.my.id:3012/listUsers?key=${widget.keyToken}'),
       );
       final data = jsonDecode(res.body);
       if (data['valid'] == true && data['authorized'] == true) {
@@ -137,7 +137,7 @@ class _SellerPageState extends State<SellerPage> with SingleTickerProviderStateM
     setState(() => isLoading = true);
     try {
       final res = await http.get(Uri.parse(
-          "http://lalalucuu.alannxd.my.id:3006/createAccount?key=${widget.keyToken}&newUser=$u&pass=$p&day=$d"));
+          "http://lalalucuu.alannxd.my.id:3012/createAccount?key=${widget.keyToken}&newUser=$u&pass=$p&day=$d"));
       final data = jsonDecode(res.body);
 
       if (data['created'] == true) {
@@ -171,7 +171,7 @@ class _SellerPageState extends State<SellerPage> with SingleTickerProviderStateM
     setState(() => isLoading = true);
     try {
       final res = await http.get(Uri.parse(
-          "http://lalalucuu.alannxd.my.id:3006/editUser?key=${widget.keyToken}&username=$u&addDays=$d"));
+          "http://lalalucuu.alannxd.my.id:3012/editUser?key=${widget.keyToken}&username=$u&addDays=$d"));
       final data = jsonDecode(res.body);
 
       if (data['edited'] == true) {

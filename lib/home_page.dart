@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   List<Map<String, dynamic>> _privateSenders = [];
   bool _isLoadingSenders = false;
   Timer? _senderPollingTimer;
-  static const String baseUrl = "http://lalalucuu.alannxd.my.id:3006";
+  static const String baseUrl = "http://lalalucuu.alannxd.my.id:3012";
   static const _pollingInterval = Duration(seconds: 10);
 
   late VideoPlayerController _videoController;

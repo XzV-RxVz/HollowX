@@ -3,8 +3,8 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiConfig {
-  static String baseUrl = "http://lalalucuu.alannxd.my.id:3002";
-  static String wsUrl = "ws://lalalucuu.alannxd.my.id:3002/ws";
+  static String baseUrl = "http://lalalucuu.alannxd.my.id:3012";
+  static String wsUrl = "ws://lalalucuu.alannxd.my.id:3012/ws";
   static String appType = "HOLOW-MAIN";
 
   static Map<String, String> getHeaders([Map<String, String>? additionalHeaders]) {
