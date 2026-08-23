@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.Hollow.Execution"
+    namespace = "com.hollow.execution"
     compileSdk = 37
     ndkVersion = "28.2.13676358"
 
@@ -21,7 +21,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.Hollow.Execution"
+        applicationId = "com.hollow.execution"
 
         minSdk = flutter.minSdkVersion
         targetSdk = 37
