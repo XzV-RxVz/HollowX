@@ -1,6 +1,3 @@
-// login_page.dart
-// DEATHTR4SH - Neon Elegant Login (No Logo)
-
 import 'dart:io';
 import 'dart:convert';
 import 'package:flutter/material.dart';
@@ -36,12 +33,12 @@ class _LoginPageState extends State<LoginPage>
   late Animation<Offset> _slideAnim;
   late Animation<double> _pulseAnim;
 
-  // Elegant DEATHTR4SH Colors
-  static const Color _primaryRed = Color(0xFFDC143C);
-  static const Color _accentRed = Color(0xFFFF1744);
-  static const Color _goldAccent = Color(0xFFFFD700);
-  static const Color _darkBg = Color(0xFF000000);
-  static const Color _cardBg = Color(0xFF0A0000);
+  // Hollow Execution Colors
+  static const Color _bgBlack = Color(0xFF07030F);
+  static const Color _deepPurple = Color(0xFF4C1D95);
+  static const Color _violet500 = Color(0xFF7C3AED);
+  static const Color _cyanAccent = Color(0xFF4DE8E8);
+  static const Color _cardBg = Color(0xFF0A0018); // Lebih ungu gelap
 
   @override
   void initState() {
@@ -258,7 +255,7 @@ class _LoginPageState extends State<LoginPage>
               color: _cardBg,
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
-                color: isError ? _primaryRed.withOpacity(0.2) : _goldAccent.withOpacity(0.2),
+                color: isError ? _deepPurple.withOpacity(0.4) : _cyanAccent.withOpacity(0.2),
                 width: 1,
               ),
             ),
@@ -269,12 +266,12 @@ class _LoginPageState extends State<LoginPage>
                   width: 48,
                   height: 48,
                   decoration: BoxDecoration(
-                    color: isError ? _primaryRed.withOpacity(0.1) : _goldAccent.withOpacity(0.1),
+                    color: isError ? _deepPurple.withOpacity(0.2) : _cyanAccent.withOpacity(0.1),
                     shape: BoxShape.circle,
                   ),
                   child: Icon(
                     isError ? Icons.error_outline : Icons.info_outline,
-                    color: isError ? _primaryRed : _goldAccent,
+                    color: isError ? _violet500 : _cyanAccent,
                     size: 24,
                   ),
                 ),
@@ -282,7 +279,7 @@ class _LoginPageState extends State<LoginPage>
                 Text(
                   title,
                   style: TextStyle(
-                    fontFamily: 'ShareTechMono',
+                    fontFamily: 'Rajdhani',
                     color: Colors.white,
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
@@ -294,7 +291,7 @@ class _LoginPageState extends State<LoginPage>
                   message,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontFamily: 'ShareTechMono',
+                    fontFamily: 'Rajdhani',
                     color: Colors.white.withOpacity(0.5),
                     fontSize: 13,
                     height: 1.4,
@@ -313,15 +310,15 @@ class _LoginPageState extends State<LoginPage>
                           child: Container(
                             padding: const EdgeInsets.symmetric(vertical: 12),
                             decoration: BoxDecoration(
-                              border: Border.all(color: _primaryRed.withOpacity(0.2)),
+                              border: Border.all(color: _violet500.withOpacity(0.2)),
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Center(
                               child: Text(
                                 "Contact",
                                 style: TextStyle(
-                                  fontFamily: 'ShareTechMono',
-                                  color: _primaryRed,
+                                  fontFamily: 'Rajdhani',
+                                  color: _violet500,
                                   fontSize: 11,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -337,14 +334,14 @@ class _LoginPageState extends State<LoginPage>
                         child: Container(
                           padding: const EdgeInsets.symmetric(vertical: 12),
                           decoration: BoxDecoration(
-                            color: _primaryRed,
+                            color: _violet500,
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Center(
                             child: Text(
                               "Close",
                               style: TextStyle(
-                                fontFamily: 'ShareTechMono',
+                                fontFamily: 'Rajdhani',
                                 color: Colors.white,
                                 fontSize: 11,
                                 fontWeight: FontWeight.w600,
@@ -375,54 +372,31 @@ class _LoginPageState extends State<LoginPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: _darkBg,
+      backgroundColor: _bgBlack,
       body: Stack(
         children: [
-          // ===== BACKGROUND HITAM POLOS =====
-          Container(
-            color: _darkBg,
-          ),
-          
-          // ===== GLOW ORBS (SEDIKIT) =====
-          Positioned(
-            top: -150,
-            right: -100,
-            child: IgnorePointer(
-              child: Container(
-                width: 300,
-                height: 300,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  gradient: RadialGradient(
-                    colors: [
-                      _primaryRed.withOpacity(0.06),
-                      Colors.transparent,
-                    ],
-                  ),
+          // ===== BACKGROUND DEEP SPACE + GRID =====
+          Positioned.fill(
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: RadialGradient(
+                  center: const Alignment(0.7, -0.3),
+                  radius: 1.2,
+                  colors: [
+                    _deepPurple.withOpacity(0.8),
+                    _bgBlack,
+                  ],
                 ),
               ),
             ),
           ),
-          Positioned(
-            bottom: -100,
-            left: -80,
-            child: IgnorePointer(
-              child: Container(
-                width: 250,
-                height: 250,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  gradient: RadialGradient(
-                    colors: [
-                      _accentRed.withOpacity(0.04),
-                      Colors.transparent,
-                    ],
-                  ),
-                ),
-              ),
+          // Grid Lines
+          Positioned.fill(
+            child: CustomPaint(
+              painter: _GridPainter(),
             ),
           ),
-          
+
           // ===== MAIN CONTENT =====
           SafeArea(
             child: FadeTransition(
@@ -434,141 +408,64 @@ class _LoginPageState extends State<LoginPage>
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      // ===== APP NAME - NEON EFFECT =====
-                      AnimatedBuilder(
-                        animation: _pulseAnim,
-                        builder: (context, child) {
-                          return Transform.scale(
-                            scale: _pulseAnim.value,
-                            child: ShaderMask(
-                              shaderCallback: (bounds) => LinearGradient(
-                                colors: [
-                                  _primaryRed,
-                                  _goldAccent,
-                                  _accentRed,
-                                ],
-                                stops: const [0.0, 0.5, 1.0],
-                              ).createShader(bounds),
-                              child: Text(
-                                "DEATHTR4SH",
-                                style: TextStyle(
-                                  fontFamily: 'FontX',
-                                  fontSize: 32,
-                                  fontWeight: FontWeight.w900,
-                                  color: Colors.white,
-                                  letterSpacing: 4,
-                                  shadows: [
-                                    Shadow(
-                                      blurRadius: 30,
-                                      color: _primaryRed.withOpacity(0.6),
-                                    ),
-                                    Shadow(
-                                      blurRadius: 60,
-                                      color: _primaryRed.withOpacity(0.3),
-                                    ),
-                                    Shadow(
-                                      blurRadius: 80,
-                                      color: _goldAccent.withOpacity(0.15),
-                                    ),
-                                    Shadow(
-                                      blurRadius: 10,
-                                      color: Colors.white.withOpacity(0.1),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          );
-                        },
+                      // ===== TITLE IMAGE (TRANSPARAN) =====
+                      Image.asset(
+                        'assets/images/TitleX.png',
+                        width: MediaQuery.of(context).size.width * 0.9,
+                        fit: BoxFit.contain,
                       ),
                       
-                      const SizedBox(height: 8),
-                      
-                      // ===== SUBTITLE - NEON =====
-                      Text(
-                        "THE NEW GENERATION",
-                        style: TextStyle(
-                          fontFamily: 'FontX',
-                          color: _primaryRed.withOpacity(0.5),
-                          fontSize: 10,
-                          fontWeight: FontWeight.w700,
-                          letterSpacing: 5,
-                          shadows: [
-                            Shadow(
-                              blurRadius: 15,
-                              color: _primaryRed.withOpacity(0.2),
-                            ),
-                          ],
-                        ),
-                      ),
-                      
-                      const SizedBox(height: 12),
-                      
-                      // ===== CREDIT =====
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: _primaryRed.withOpacity(0.08)),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Text(
-                          "New Era DeathTr4sh",
-                          style: TextStyle(
-                            fontFamily: 'ShareTechMono',
-                            color: Colors.white.withOpacity(0.15),
-                            fontSize: 8,
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: 1.5,
-                          ),
-                        ),
-                      ),
-                      
-                      const SizedBox(height: 48),
+                      const SizedBox(height: 32),
 
-                      // ===== FORM CARD =====
+                      // ===== BOX LOGIN (4:3) MENYATU DENGAN BANNER =====
                       SlideTransition(
                         position: _slideAnim,
-                        child: Container(
-                          padding: const EdgeInsets.all(24),
-                          decoration: BoxDecoration(
-                            color: _cardBg.withOpacity(0.6),
+                        child: AspectRatio(
+                          aspectRatio: 4 / 3,
+                          child: ClipRRect(
                             borderRadius: BorderRadius.circular(16),
-                            border: Border.all(
-                              color: _primaryRed.withOpacity(0.12),
-                              width: 1.5,
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: _primaryRed.withOpacity(0.03),
-                                blurRadius: 30,
-                                spreadRadius: 5,
-                              ),
-                            ],
-                          ),
-                          child: Form(
-                            key: _formKey,
-                            child: Column(
+                            child: Stack(
                               children: [
-                                _buildInput(
-                                  userController,
-                                  "Username",
-                                  Icons.person_outline,
-                                  false,
+                                // Banner Image (Background)
+                                Positioned.fill(
+                                  child: Image.asset(
+                                    'assets/images/BannerX.png', // Gambar banner transparan
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
-                                const SizedBox(height: 20),
-                                _buildInput(
-                                  passController,
-                                  "Password",
-                                  Icons.lock_outline,
-                                  true,
+                                // Form User & Pass menimpa gambar
+                                Positioned.fill(
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        _buildInput(
+                                          userController,
+                                          "Username",
+                                          Icons.person_outline,
+                                          false,
+                                        ),
+                                        const SizedBox(height: 20),
+                                        _buildInput(
+                                          passController,
+                                          "Password",
+                                          Icons.lock_outline,
+                                          true,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ),
-                                const SizedBox(height: 32),
-                                _buildButton(),
                               ],
                             ),
                           ),
                         ),
                       ),
+
+                      // ===== TOMBOL LOGIN (DIPISAH) =====
+                      const SizedBox(height: 24),
+                      _buildButton(),
 
                       const SizedBox(height: 32),
 
@@ -587,9 +484,9 @@ class _LoginPageState extends State<LoginPage>
                                 ),
                                 const SizedBox(width: 12),
                                 Text(
-                                  "SECURE",
+                                  "Powered By @JustRxVz - @alannxd",
                                   style: TextStyle(
-                                    fontFamily: 'ShareTechMono',
+                                    fontFamily: 'Rajdhani',
                                     color: Colors.white.withOpacity(0.06),
                                     fontSize: 8,
                                     letterSpacing: 3,
@@ -606,9 +503,9 @@ class _LoginPageState extends State<LoginPage>
                             ),
                             const SizedBox(height: 10),
                             Text(
-                              "DEATHTR4SH v1",
+                              "HOLLOW EXECUTION v14",
                               style: TextStyle(
-                                fontFamily: 'FontX',
+                                fontFamily: 'Rajdhani',
                                 color: Colors.white.withOpacity(0.03),
                                 fontSize: 8,
                                 letterSpacing: 2,
@@ -640,8 +537,8 @@ class _LoginPageState extends State<LoginPage>
         Text(
           label,
           style: TextStyle(
-            fontFamily: 'ShareTechMono',
-            color: Colors.white.withOpacity(0.3),
+            fontFamily: 'Rajdhani',
+            color: Colors.white.withOpacity(0.4),
             fontSize: 10,
             fontWeight: FontWeight.w600,
             letterSpacing: 1.5,
@@ -653,7 +550,7 @@ class _LoginPageState extends State<LoginPage>
             color: Colors.white.withOpacity(0.02),
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
-              color: _primaryRed.withOpacity(0.15),
+              color: _deepPurple.withOpacity(0.3),
               width: 1.5,
             ),
           ),
@@ -662,7 +559,7 @@ class _LoginPageState extends State<LoginPage>
               const SizedBox(width: 14),
               Icon(
                 icon,
-                color: _primaryRed.withOpacity(0.4),
+                color: _cyanAccent.withOpacity(0.5),
                 size: 20,
               ),
               const SizedBox(width: 12),
@@ -671,7 +568,7 @@ class _LoginPageState extends State<LoginPage>
                   controller: controller,
                   obscureText: isPassword ? _obscurePassword : false,
                   style: TextStyle(
-                    fontFamily: 'ShareTechMono',
+                    fontFamily: 'Rajdhani',
                     color: Colors.white,
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
@@ -679,8 +576,8 @@ class _LoginPageState extends State<LoginPage>
                   decoration: InputDecoration(
                     hintText: "Enter $label",
                     hintStyle: TextStyle(
-                      fontFamily: 'ShareTechMono',
-                      color: Colors.white.withOpacity(0.1),
+                      fontFamily: 'Rajdhani',
+                      color: Colors.white.withOpacity(0.2),
                       fontSize: 13,
                       fontWeight: FontWeight.w300,
                     ),
@@ -691,7 +588,7 @@ class _LoginPageState extends State<LoginPage>
                             padding: EdgeInsets.zero,
                             icon: Icon(
                               _obscurePassword ? Icons.visibility_off : Icons.visibility,
-                              color: Colors.white.withOpacity(0.15),
+                              color: Colors.white.withOpacity(0.2),
                               size: 20,
                             ),
                             onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
@@ -723,12 +620,12 @@ class _LoginPageState extends State<LoginPage>
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [_primaryRed, _accentRed],
+              colors: [_deepPurple, _violet500, _cyanAccent],
             ),
             borderRadius: BorderRadius.circular(12),
             boxShadow: [
               BoxShadow(
-                color: _primaryRed.withOpacity(0.2),
+                color: _violet500.withOpacity(0.3),
                 blurRadius: 25,
                 spreadRadius: 2,
               ),
@@ -745,13 +642,13 @@ class _LoginPageState extends State<LoginPage>
                     ),
                   )
                 : Text(
-                    "Login",
+                    "LOGIN",
                     style: TextStyle(
-                      fontFamily: 'ShareTechMono',
+                      fontFamily: 'Rajdhani',
                       color: Colors.white,
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
-                      letterSpacing: 2,
+                      letterSpacing: 4,
                     ),
                   ),
           ),
@@ -759,4 +656,27 @@ class _LoginPageState extends State<LoginPage>
       ),
     );
   }
+}
+
+// Painter untuk Grid Lines
+class _GridPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = _violet500.withOpacity(0.08)
+      ..strokeWidth = 1;
+
+    const double gridSize = 60;
+
+    for (double x = 0; x <= size.width; x += gridSize) {
+      canvas.drawLine(Offset(x, 0), Offset(x, size.height), paint);
+    }
+
+    for (double y = 0; y <= size.height; y += gridSize) {
+      canvas.drawLine(Offset(0, y), Offset(size.width, y), paint);
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _GridPainter oldDelegate) => false;
 }
