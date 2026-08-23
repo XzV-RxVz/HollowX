@@ -46,9 +46,6 @@ class _LandingPageState extends State<LandingPage> {
   }
 }
 
-// ============================================================
-// THEME COLORS - HOLLOW EXECUTION (DEEP VIOLET & CYAN)
-// ============================================================
 class HollowExecutionTheme {
   static const Color bgBlack = Color(0xFF07030F);
   static const Color deepPurple = Color(0xFF4C1D95);
@@ -57,12 +54,9 @@ class HollowExecutionTheme {
   static const Color cyanAccent = Color(0xFF4DE8E8);
   static const Color magentaAccent = Color(0xFFE879F9);
   static const Color textWhite = Color(0xFFF8FAFC);
-  static const Color textDim = Color(0xFFD8B4FE); // Ungu muda transparan
+  static const Color textDim = Color(0xFFD8B4FE);
 }
 
-// ============================================================
-// STAGE 1: SPLASH (Siluet Image + Animasi Reveal)
-// ============================================================
 class _SplashStage extends StatefulWidget {
   final VoidCallback onDone;
   const _SplashStage({super.key, required this.onDone});
@@ -140,7 +134,6 @@ class _SplashStageState extends State<_SplashStage>
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        // Background Deep Space
         Positioned.fill(
           child: Container(
             decoration: BoxDecoration(
@@ -155,13 +148,11 @@ class _SplashStageState extends State<_SplashStage>
             ),
           ),
         ),
-        // GRID LINES (Tanpa Partikel Bintang)
         Positioned.fill(
           child: CustomPaint(
             painter: _GridLinesPainter(),
           ),
         ),
-        // Konten
         Positioned.fill(
           child: Center(
             child: AnimatedBuilder(
@@ -171,7 +162,6 @@ class _SplashStageState extends State<_SplashStage>
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    // Siluet Image (16:9, Transparan)
                     Opacity(
                       opacity: _fadeIn.value,
                       child: Transform.scale(
@@ -193,7 +183,6 @@ class _SplashStageState extends State<_SplashStage>
                       ),
                     ),
                     const SizedBox(height: 20),
-                    // Subtitle System
                     ShaderMask(
                       shaderCallback: (bounds) => LinearGradient(
                         colors: [
@@ -216,7 +205,6 @@ class _SplashStageState extends State<_SplashStage>
                       ),
                     ),
                     const SizedBox(height: 50),
-                    // Progress Bar
                     SizedBox(
                       width: 220,
                       child: Column(
@@ -291,9 +279,6 @@ class _SplashStageState extends State<_SplashStage>
   }
 }
 
-// ============================================================
-// STAGE 2: WELCOME (3 Slide + Fingerprint Scanner)
-// ============================================================
 class _WelcomeStage extends StatefulWidget {
   const _WelcomeStage({super.key});
 
@@ -311,7 +296,6 @@ class _WelcomeStageState extends State<_WelcomeStage>
   final ScrollController _scrollController = ScrollController();
   bool _hasEntered = false;
 
-  // State untuk Fingerprint
   bool _isScanning = false;
   bool _isAuthenticated = false;
   String _fpStatus = "TAP TO SCAN";
@@ -342,8 +326,6 @@ class _WelcomeStageState extends State<_WelcomeStage>
     ));
 
     _controller.forward();
-
-    // Scroll listener untuk 3x scroll
     _scrollController.addListener(_onScroll);
   }
 
@@ -361,13 +343,11 @@ class _WelcomeStageState extends State<_WelcomeStage>
     final currentScroll = _scrollController.position.pixels;
     final scrollPercent = maxScroll > 0 ? (currentScroll / maxScroll) * 100 : 0;
 
-    // Deteksi sudah di slide ke 3 (akhir)
     if (scrollPercent >= 85 && !_hasEntered) {
       _hasEntered = true;
     }
   }
 
-  // LOGIKA FINGERPRINT
   void _onFingerprintTap() {
     if (_isScanning || _isAuthenticated) return;
 
@@ -377,7 +357,6 @@ class _WelcomeStageState extends State<_WelcomeStage>
       _fpStatus = "SCANNING...";
     });
 
-    // Simulasi scan 2 detik
     Future.delayed(const Duration(seconds: 2), () {
       HapticFeedback.heavyImpact();
       setState(() {
@@ -386,7 +365,6 @@ class _WelcomeStageState extends State<_WelcomeStage>
         _fpStatus = "ACCESS GRANTED";
       });
 
-      // Navigasi ke Login
       Future.delayed(const Duration(milliseconds: 800), () {
         if (mounted) {
           Navigator.of(context).pushReplacementNamed("/login");
@@ -399,7 +377,6 @@ class _WelcomeStageState extends State<_WelcomeStage>
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        // Background Deep Space
         Positioned.fill(
           child: Container(
             decoration: BoxDecoration(
@@ -414,20 +391,17 @@ class _WelcomeStageState extends State<_WelcomeStage>
             ),
           ),
         ),
-        // GRID LINES (Tanpa Partikel Bintang)
         Positioned.fill(
           child: CustomPaint(
             painter: _GridLinesPainter(),
           ),
         ),
-        // Scroll Container (3 Slide)
         Positioned.fill(
           child: SingleChildScrollView(
             controller: _scrollController,
             physics: const BouncingScrollPhysics(),
             child: Column(
               children: [
-                // ============ SLIDE 1: INTRO ============
                 SizedBox(
                   height: MediaQuery.of(context).size.height,
                   child: Padding(
@@ -518,8 +492,6 @@ class _WelcomeStageState extends State<_WelcomeStage>
                     ),
                   ),
                 ),
-
-                // ============ SLIDE 2: FEATURES ============
                 SizedBox(
                   height: MediaQuery.of(context).size.height,
                   child: Padding(
@@ -578,8 +550,6 @@ class _WelcomeStageState extends State<_WelcomeStage>
                     ),
                   ),
                 ),
-
-                // ============ SLIDE 3: AUTHENTICATION ============
                 SizedBox(
                   height: MediaQuery.of(context).size.height,
                   child: Padding(
@@ -587,7 +557,6 @@ class _WelcomeStageState extends State<_WelcomeStage>
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        // Judul Auth
                         Text(
                           "AUTHENTICATION",
                           style: TextStyle(
@@ -610,8 +579,6 @@ class _WelcomeStageState extends State<_WelcomeStage>
                           ),
                         ),
                         const SizedBox(height: 40),
-
-                        // Fingerprint Scanner
                         GestureDetector(
                           onTap: _onFingerprintTap,
                           child: AnimatedContainer(
@@ -684,9 +651,6 @@ class _WelcomeStageState extends State<_WelcomeStage>
   }
 }
 
-// ============================================================
-// WIDGETS & PAINTERS
-// ============================================================
 class _InfoCard extends StatelessWidget {
   final IconData icon;
   final String title;
@@ -766,7 +730,6 @@ class _InfoCard extends StatelessWidget {
   }
 }
 
-// Painter untuk Grid Lines (Garis Kotak Ungu Transparan)
 class _GridLinesPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {

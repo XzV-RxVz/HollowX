@@ -8,6 +8,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'splash.dart';
 
+const Color kBgBlack = Color(0xFF07030F);
+const Color kDeepPurple = Color(0xFF4C1D95);
+const Color kViolet500 = Color(0xFF7C3AED);
+const Color kCyanAccent = Color(0xFF4DE8E8);
+const Color kCardBg = Color(0xFF0A0018);
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -32,13 +38,6 @@ class _LoginPageState extends State<LoginPage>
   late Animation<double> _fadeAnim;
   late Animation<Offset> _slideAnim;
   late Animation<double> _pulseAnim;
-
-  // Hollow Execution Colors
-  static const Color _bgBlack = Color(0xFF07030F);
-  static const Color _deepPurple = Color(0xFF4C1D95);
-  static const Color _violet500 = Color(0xFF7C3AED);
-  static const Color _cyanAccent = Color(0xFF4DE8E8);
-  static const Color _cardBg = Color(0xFF0A0018); // Lebih ungu gelap
 
   @override
   void initState() {
@@ -252,10 +251,10 @@ class _LoginPageState extends State<LoginPage>
             margin: const EdgeInsets.all(20),
             padding: const EdgeInsets.all(24),
             decoration: BoxDecoration(
-              color: _cardBg,
+              color: kCardBg,
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
-                color: isError ? _deepPurple.withOpacity(0.4) : _cyanAccent.withOpacity(0.2),
+                color: isError ? kDeepPurple.withOpacity(0.4) : kCyanAccent.withOpacity(0.2),
                 width: 1,
               ),
             ),
@@ -266,12 +265,12 @@ class _LoginPageState extends State<LoginPage>
                   width: 48,
                   height: 48,
                   decoration: BoxDecoration(
-                    color: isError ? _deepPurple.withOpacity(0.2) : _cyanAccent.withOpacity(0.1),
+                    color: isError ? kDeepPurple.withOpacity(0.2) : kCyanAccent.withOpacity(0.1),
                     shape: BoxShape.circle,
                   ),
                   child: Icon(
                     isError ? Icons.error_outline : Icons.info_outline,
-                    color: isError ? _violet500 : _cyanAccent,
+                    color: isError ? kViolet500 : kCyanAccent,
                     size: 24,
                   ),
                 ),
@@ -310,7 +309,7 @@ class _LoginPageState extends State<LoginPage>
                           child: Container(
                             padding: const EdgeInsets.symmetric(vertical: 12),
                             decoration: BoxDecoration(
-                              border: Border.all(color: _violet500.withOpacity(0.2)),
+                              border: Border.all(color: kViolet500.withOpacity(0.2)),
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Center(
@@ -318,7 +317,7 @@ class _LoginPageState extends State<LoginPage>
                                 "Contact",
                                 style: TextStyle(
                                   fontFamily: 'Rajdhani',
-                                  color: _violet500,
+                                  color: kViolet500,
                                   fontSize: 11,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -334,7 +333,7 @@ class _LoginPageState extends State<LoginPage>
                         child: Container(
                           padding: const EdgeInsets.symmetric(vertical: 12),
                           decoration: BoxDecoration(
-                            color: _violet500,
+                            color: kViolet500,
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Center(
@@ -372,10 +371,9 @@ class _LoginPageState extends State<LoginPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: _bgBlack,
+      backgroundColor: kBgBlack,
       body: Stack(
         children: [
-          // ===== BACKGROUND DEEP SPACE + GRID =====
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
@@ -383,21 +381,18 @@ class _LoginPageState extends State<LoginPage>
                   center: const Alignment(0.7, -0.3),
                   radius: 1.2,
                   colors: [
-                    _deepPurple.withOpacity(0.8),
-                    _bgBlack,
+                    kDeepPurple.withOpacity(0.8),
+                    kBgBlack,
                   ],
                 ),
               ),
             ),
           ),
-          // Grid Lines
           Positioned.fill(
             child: CustomPaint(
               painter: _GridPainter(),
             ),
           ),
-
-          // ===== MAIN CONTENT =====
           SafeArea(
             child: FadeTransition(
               opacity: _fadeAnim,
@@ -408,16 +403,12 @@ class _LoginPageState extends State<LoginPage>
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      // ===== TITLE IMAGE (TRANSPARAN) =====
                       Image.asset(
                         'assets/images/TitleX.png',
                         width: MediaQuery.of(context).size.width * 0.9,
                         fit: BoxFit.contain,
                       ),
-                      
                       const SizedBox(height: 32),
-
-                      // ===== BOX LOGIN (4:3) MENYATU DENGAN BANNER =====
                       SlideTransition(
                         position: _slideAnim,
                         child: AspectRatio(
@@ -426,14 +417,12 @@ class _LoginPageState extends State<LoginPage>
                             borderRadius: BorderRadius.circular(16),
                             child: Stack(
                               children: [
-                                // Banner Image (Background)
                                 Positioned.fill(
                                   child: Image.asset(
-                                    'assets/images/BannerX.png', // Gambar banner transparan
+                                    'assets/images/BannerX.png',
                                     fit: BoxFit.cover,
                                   ),
                                 ),
-                                // Form User & Pass menimpa gambar
                                 Positioned.fill(
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
@@ -462,14 +451,9 @@ class _LoginPageState extends State<LoginPage>
                           ),
                         ),
                       ),
-
-                      // ===== TOMBOL LOGIN (DIPISAH) =====
                       const SizedBox(height: 24),
                       _buildButton(),
-
                       const SizedBox(height: 32),
-
-                      // ===== FOOTER =====
                       Container(
                         padding: const EdgeInsets.all(8),
                         child: Column(
@@ -550,7 +534,7 @@ class _LoginPageState extends State<LoginPage>
             color: Colors.white.withOpacity(0.02),
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
-              color: _deepPurple.withOpacity(0.3),
+              color: kDeepPurple.withOpacity(0.3),
               width: 1.5,
             ),
           ),
@@ -559,7 +543,7 @@ class _LoginPageState extends State<LoginPage>
               const SizedBox(width: 14),
               Icon(
                 icon,
-                color: _cyanAccent.withOpacity(0.5),
+                color: kCyanAccent.withOpacity(0.5),
                 size: 20,
               ),
               const SizedBox(width: 12),
@@ -620,12 +604,12 @@ class _LoginPageState extends State<LoginPage>
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [_deepPurple, _violet500, _cyanAccent],
+              colors: [kDeepPurple, kViolet500, kCyanAccent],
             ),
             borderRadius: BorderRadius.circular(12),
             boxShadow: [
               BoxShadow(
-                color: _violet500.withOpacity(0.3),
+                color: kViolet500.withOpacity(0.3),
                 blurRadius: 25,
                 spreadRadius: 2,
               ),
@@ -658,12 +642,11 @@ class _LoginPageState extends State<LoginPage>
   }
 }
 
-// Painter untuk Grid Lines
 class _GridPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = _violet500.withOpacity(0.08)
+      ..color = kViolet500.withOpacity(0.08)
       ..strokeWidth = 1;
 
     const double gridSize = 60;
