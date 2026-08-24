@@ -223,10 +223,10 @@ class _LoginPageState extends State<LoginPage>
           isError: true,
         );
       }
-    }
-
-    if (mounted) {
-      setState(() => isLoading = false);
+    } finally {
+      if (mounted) {
+        setState(() => isLoading = false);
+      }
     }
   }
 
@@ -426,23 +426,26 @@ class _LoginPageState extends State<LoginPage>
                                 Positioned.fill(
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        _buildInput(
-                                          userController,
-                                          "Username",
-                                          Icons.person_outline,
-                                          false,
-                                        ),
-                                        const SizedBox(height: 20),
-                                        _buildInput(
-                                          passController,
-                                          "Password",
-                                          Icons.lock_outline,
-                                          true,
-                                        ),
-                                      ],
+                                    child: Form(
+                                      key: _formKey,
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          _buildInput(
+                                            userController,
+                                            "Username",
+                                            Icons.person_outline,
+                                            false,
+                                          ),
+                                          const SizedBox(height: 20),
+                                          _buildInput(
+                                            passController,
+                                            "Password",
+                                            Icons.lock_outline,
+                                            true,
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -464,14 +467,14 @@ class _LoginPageState extends State<LoginPage>
                                 Container(
                                   width: 30,
                                   height: 1,
-                                  color: Colors.white.withOpacity(0.05),
+                                  color: Colors.white.withOpacity(0.15),
                                 ),
                                 const SizedBox(width: 12),
                                 Text(
                                   "Powered By @JustRxVz - @alannxd",
                                   style: TextStyle(
                                     fontFamily: 'Rajdhani',
-                                    color: Colors.white.withOpacity(0.06),
+                                    color: Colors.white.withOpacity(0.15),
                                     fontSize: 8,
                                     letterSpacing: 3,
                                     fontWeight: FontWeight.w600,
@@ -481,7 +484,7 @@ class _LoginPageState extends State<LoginPage>
                                 Container(
                                   width: 30,
                                   height: 1,
-                                  color: Colors.white.withOpacity(0.05),
+                                  color: Colors.white.withOpacity(0.15),
                                 ),
                               ],
                             ),
@@ -490,7 +493,7 @@ class _LoginPageState extends State<LoginPage>
                               "HOLLOW EXECUTION v14",
                               style: TextStyle(
                                 fontFamily: 'Rajdhani',
-                                color: Colors.white.withOpacity(0.03),
+                                color: Colors.white.withOpacity(0.15),
                                 fontSize: 8,
                                 letterSpacing: 2,
                               ),
@@ -534,16 +537,23 @@ class _LoginPageState extends State<LoginPage>
             color: Colors.white.withOpacity(0.02),
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
-              color: kDeepPurple.withOpacity(0.3),
-              width: 1.5,
+              color: kCyanAccent.withOpacity(0.8),
+              width: 2.5,
             ),
+            boxShadow: [
+              BoxShadow(
+                color: kCyanAccent.withOpacity(0.1),
+                blurRadius: 10,
+                spreadRadius: 2,
+              ),
+            ],
           ),
           child: Row(
             children: [
               const SizedBox(width: 14),
               Icon(
                 icon,
-                color: kCyanAccent.withOpacity(0.5),
+                color: kCyanAccent.withOpacity(0.8),
                 size: 20,
               ),
               const SizedBox(width: 12),
@@ -561,7 +571,7 @@ class _LoginPageState extends State<LoginPage>
                     hintText: "Enter $label",
                     hintStyle: TextStyle(
                       fontFamily: 'Rajdhani',
-                      color: Colors.white.withOpacity(0.2),
+                      color: Colors.white.withOpacity(0.3),
                       fontSize: 13,
                       fontWeight: FontWeight.w300,
                     ),
@@ -572,7 +582,7 @@ class _LoginPageState extends State<LoginPage>
                             padding: EdgeInsets.zero,
                             icon: Icon(
                               _obscurePassword ? Icons.visibility_off : Icons.visibility,
-                              color: Colors.white.withOpacity(0.2),
+                              color: Colors.white.withOpacity(0.3),
                               size: 20,
                             ),
                             onPressed: () => setState(() => _obscurePassword = !_obscurePassword),

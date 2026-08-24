@@ -66,16 +66,18 @@ flutter:
   assets:
     - assets/images/logo.jpg
     - assets/images/logo.png
+    - assets/images/Text.png
+    - assets/images/TextX.png
     - assets/images/reze.png
     - assets/images/TitleX.png
     - assets/images/BannerX.png
     - assets/videos/splash.mp4
     - assets/videos/banner.mp4
     - assets/videos/loading.mp4
-    - assets/videos/opening.mp4
     - assets/videos/BannerOne.mp4
     - assets/videos/BannerTwo.mp4
     - assets/videos/BannerThree.mp4
+    - assets/videos/bnb.mp4
 
   fonts:
     - family: Orbitron

