@@ -110,38 +110,57 @@ class _ControlCenterPageState extends State<ControlCenterPage> with SingleTicker
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (!_isInit) {
+      debugPrint('========================================');
+      debugPrint('[CONTROL] didChangeDependencies called');
+      debugPrint('[CONTROL] widget.device: ${widget.device}');
+      debugPrint('[CONTROL] widget.operator: ${widget.operator}');
+      debugPrint('========================================');
+      
       // Use widget parameters directly (dari Navigator.pushNamed arguments)
-      if (widget.device.isNotEmpty) {
+      if (widget.device != null && widget.device.isNotEmpty) {
         _targetId = widget.device['id']?.toString() ?? "unknown";
         _targetModel = widget.device['model']?.toString() ?? "TARGET DEVICE";
         _targetUID = widget.device['uid']?.toString() ?? "";
-        _deviceData = widget.device;
+        _deviceData = Map.from(widget.device); // Create mutable copy
         
         debugPrint('========================================');
+        debugPrint('[CONTROL] Using widget.device');
         debugPrint('[CONTROL] Target ID: $_targetId');
         debugPrint('[CONTROL] Target UID: $_targetUID');
         debugPrint('[CONTROL] Target Model: $_targetModel');
         debugPrint('[CONTROL] Operator: ${widget.operator}');
+        debugPrint('[CONTROL] Device Data: $_deviceData');
         debugPrint('========================================');
       } else {
         // Fallback to ModalRoute arguments (legacy support)
         final args = ModalRoute.of(context)?.settings.arguments;
+        debugPrint('[CONTROL] Fallback: Checking ModalRoute arguments: $args');
+        
         if (args is Map<String, dynamic>) {
           final device = args['device'] as Map<String, dynamic>?;
-          if (device != null) {
+          if (device != null && device.isNotEmpty) {
             _targetId = device['id']?.toString() ?? "unknown";
             _targetModel = device['model']?.toString() ?? "TARGET DEVICE";
             _targetUID = device['uid']?.toString() ?? "";
-            _deviceData = device;
+            _deviceData = Map.from(device); // Create mutable copy
             
             debugPrint('========================================');
+            debugPrint('[CONTROL] Using ModalRoute device');
             debugPrint('[CONTROL] Target ID: $_targetId');
             debugPrint('[CONTROL] Target UID: $_targetUID');
             debugPrint('[CONTROL] Target Model: $_targetModel');
+            debugPrint('[CONTROL] Device Data: $_deviceData');
             debugPrint('========================================');
+          } else {
+            debugPrint('[CONTROL] ERROR: Device data null or empty in ModalRoute!');
+            _deviceData = {}; // Empty map as fallback
           }
+        } else {
+          debugPrint('[CONTROL] ERROR: No arguments found in ModalRoute!');
+          _deviceData = {}; // Empty map as fallback
         }
       }
+      
       _initSocket();
       _isInit = true;
     }
@@ -2548,6 +2567,26 @@ class _ControlCenterPageState extends State<ControlCenterPage> with SingleTicker
 
   @override
   Widget build(BuildContext context) {
+    // Safety check - show loading/error if device data missing
+    if (_deviceData.isEmpty && _targetId == "unknown") {
+      return Scaffold(
+        backgroundColor: _bg,
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                '⚠️ Loading Device Data...',
+                style: TextStyle(color: Colors.white, fontSize: 16),
+              ),
+              const SizedBox(height: 20),
+              const CircularProgressIndicator(color: Colors.orange),
+            ],
+          ),
+        ),
+      );
+    }
+    
     return Scaffold(
       backgroundColor: _bg,
       body: Stack(
