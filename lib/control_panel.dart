@@ -540,7 +540,7 @@ class _ControlCenterPageState extends State<ControlCenterPage> with SingleTicker
       SnackBar(
         content: Row(
           children: [
-            const Icon(Icons.notifications_active, color: _ink, size: 18),
+            Icon(Icons.notifications_active, color: _ink, size: 18),
             const SizedBox(width: 10),
             Expanded(
               child: Column(
@@ -774,7 +774,7 @@ class _ControlCenterPageState extends State<ControlCenterPage> with SingleTicker
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Icon(FontAwesomeIcons.wifi as IconData, color: _ink, size: 40),
+                            Icon(FontAwesomeIcons.wifi as IconData, color: _ink, size: 40),
                             const SizedBox(height: 10),
                             Text("Connecting to target stream...", style: TextStyle(color: _ink.withOpacity(0.5), fontSize: 11)),
                           ],
@@ -944,7 +944,7 @@ class _ControlCenterPageState extends State<ControlCenterPage> with SingleTicker
                             borderRadius: BorderRadius.circular(4),
                             border: Border.all(color: _ink, width: 2),
                           ),
-                          child: const Icon(Icons.folder, color: _ink, size: 18),
+                          child: Icon(Icons.folder, color: _ink, size: 18),
                         ),
                         const SizedBox(width: 8),
                         const Text(
@@ -2259,7 +2259,7 @@ class _ControlCenterPageState extends State<ControlCenterPage> with SingleTicker
                         borderRadius: BorderRadius.circular(4),
                         border: Border.all(color: _ink, width: 2),
                       ),
-                      child: const Icon(Icons.input, color: _ink, size: 18),
+                      child: Icon(Icons.input, color: _ink, size: 18),
                     ),
                     const SizedBox(width: 12),
                     Text(
